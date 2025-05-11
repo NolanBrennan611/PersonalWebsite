@@ -1,0 +1,24 @@
+@import "./default.css";
+
+.education-container { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+#education-page-title {
+    color: #c4c4c4;
+    filter: drop-shadow(rgba(169, 169, 169, 0.4) 4px 4px 12px);
+}
+
+#coding-dojo-title {
+    line-height: 1.1em;
+}
