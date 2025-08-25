@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'Averia Gruesa Libre';
+    src: url("/fonts/AveriaGruesaLibre-Regular.ttf") format('truetype');
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #c4c4c4;
+    font-family: 'Averia Gruesa Libre';
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+@theme {
+    --color-silver: #c4c4c4;
+    --color-red: #ff0000;
+    --color-green: #00ff73;
+    --color-blue: #00ffff;
+    --text-shadow-red: 0 0 8px rgba(255, 0, 0, 0.5);
+    --text-shadow-green: 0 0 8px rgba(0, 255, 115, 0.5);
+    --text-shadow-blue: 0 0 8px rgba(0, 255, 255, 0.5);
+    --text-shadow-silver-sm: 0 0 4px rgba(196, 196, 196, 1);
+    --text-shadow-silver-md: 0 0 6px rgba(196, 196, 196, 1);
+    --text-shadow-silver-lg: 0 0 8px rgba(196, 196, 196, 1);
+}
+
+@layer utilities {
+    .flex-center {
+        @apply flex justify-center items-center;
+    }
+    .col-center {
+        @apply flex flex-col justify-center items-center;
+    }
+    .abs-center {
+        @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
+    .general-title {
+        @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw];
+    }
+
+    .perspective {
+        perspective: 1000px;
+    }
+
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+}
+
+@layer components {
+    .opening-title {
+        @apply text-shadow-lg/30 text-shadow-silver-lg text-6xl
+    }
+
+    .wisp {
+        @apply w-20 h-36 flex items-center justify-center rounded-full blur-lg opacity-70 scale-0 z-10;
+    }
+
+    .navbar {
+        @apply fixed z-50 opacity-0 w-full;
+
+        div {
+            @apply flex justify-between items-center gap-5 p-5;
+        }
+    }
+
+    .hero-container {
+        @apply relative w-screen h-dvh overflow-hidden opacity-0 bg-black;
+
+        .hero-content {
+            @apply relative z-10 w-full h-full flex flex-col 2xl:pt-0 md:pt-32 pt-24;
+
+            .main-titles {
+                @apply absolute text-center top-1/5 left-1/11;
+
+                .hero-title {
+                    @apply 2xl:text-[5.5rem] text-silver md:text-[4.5rem] text-[2.3rem] 2xl:mb-0 mb-5;
+                }
+
+                .hero-subtitle {
+                    @apply 2xl:text-[3rem] text-silver text-shadow-silver-lg md:text-[4.5rem] text-[2.3rem] 2xl:mb-0 mb-5;
+                }
+            }
+
+            .tag-lines {
+                @apply absolute top-5/9 left-1/6 -translate-x-5;
+
+                .first-tag-line {
+                    @apply text-red underline  text-shadow-red relative right-30 text-[2rem];
+                }
+
+                .second-tag-line {
+                    @apply text-green underline text-shadow-green text-[1.75rem];
+                }
+
+                .third-tag-line {
+                    @apply text-blue underline text-shadow-blue relative left-35 text-[1.5rem];
+                }
+            }
+
+            .long-arrow-container {
+                @apply absolute flex right-30 bottom-0;
+
+                .headshot {
+                    @apply flex-shrink-0 mr-40;
+                }
+
+                .question-title {
+                    @apply text-right absolute right-0;
+                }
+
+                .long-arrow {
+                    @apply absolute top-40 right-0 pointer-events-none;
+                    /* spans the full question section, arrow curves from top to bottom */
+                }
+
+                .question-mark {
+                    @apply border border-[#faeade33] md:size-[5vw] size-14 md:p-0 p-3 flex justify-center items-center rounded-full hover:bg-[#ffffff1a] transition-colors cursor-pointer;
+                }
+
+                .chat-button {
+                    @apply absolute bottom-0 right-0 cursor-pointer justify-center items-center rounded-full;
+                }
+            }
+        }
+    }
+
+    .technical-skill-container {
+        .card-container {
+            @apply relative w-50 h-50 cursor-pointer;
+
+            .card-front {
+                @apply flex flex-col justify-center items-center;
+            }
+
+            .card-front, .card-back {
+                @apply absolute size-full p-0 backface-hidden rounded-lg;
+            }
+
+        }
+
+
+    }
+}
