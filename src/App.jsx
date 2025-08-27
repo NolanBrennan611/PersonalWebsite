@@ -5,6 +5,7 @@ import { SplitText, ScrollTrigger, ScrollSmoother, MotionPathPlugin } from "gsap
 import Hero from "./sections/Hero.jsx";
 import NavBar from "./components/NavBar.jsx";
 import TechnicalSkills from "./sections/TechnicalSkills.jsx";
+import Footer from "./sections/Footer.jsx";
 
 gsap.registerPlugin(SplitText, ScrollSmoother, ScrollTrigger, MotionPathPlugin);
 
@@ -72,7 +73,7 @@ const App = () => {
             <Wisp />
             <Hero />
             <TechnicalSkills />
-            <div className="h-dvh"></div>
+            <Footer />
         </main>
     )
 }

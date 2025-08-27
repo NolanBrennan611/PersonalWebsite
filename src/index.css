@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @font-face {
     font-family: 'Averia Gruesa Libre';
-    src: url("/fonts/AveriaGruesaLibre-Regular.ttf") format('truetype');
+    src: url('/fonts/AveriaGruesaLibre-Regular.ttf') format('truetype');
 }
 
 html,
@@ -24,28 +24,59 @@ body::-webkit-scrollbar {
 }
 
 @theme {
-    --color-silver: #c4c4c4;
     --color-red: #ff0000;
     --color-green: #00ff73;
     --color-blue: #00ffff;
+    --color-silver: #c4c4c4;
+    --color-gray: #202020;
+    --color-medium-gray: #717171;
     --text-shadow-red: 0 0 8px rgba(255, 0, 0, 0.5);
     --text-shadow-green: 0 0 8px rgba(0, 255, 115, 0.5);
     --text-shadow-blue: 0 0 8px rgba(0, 255, 255, 0.5);
     --text-shadow-silver-sm: 0 0 4px rgba(196, 196, 196, 1);
     --text-shadow-silver-md: 0 0 6px rgba(196, 196, 196, 1);
     --text-shadow-silver-lg: 0 0 8px rgba(196, 196, 196, 1);
+    --text-shadow-medium-gray-sm: 0 0 4px #717171;
+    --horizontal-scrollbar: linear-gradient(
+            to right,
+            rgba(128, 128, 128, 0) 0%,
+            rgba(128, 128, 128, 0.8) 50%,
+            rgba(128, 128, 128, 0) 100%
+    ) 1 0 0 0;
+    --vertical-scrollbar: linear-gradient(
+            to bottom,
+            rgba(128, 128, 128, 0) 0%,
+            rgba(128, 128, 128, 0.8) 50%,
+            rgba(128, 128, 128, 0) 100%
+    );
+    --orange-message-gradient: linear-gradient(
+            to top left,
+            rgba(255, 183, 77, 0.3) 0%,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(196, 196, 196, 0) 65%
+    );
+    --blue-message-gradient: linear-gradient(
+            to top right,
+            rgba(79, 195, 247, 0.3) 0%,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(196, 196, 196, 0) 65%
+    );
+    --drop-shadow: drop-shadow(2px 4px 4px rgba(0,0,0,0.5));
 }
 
 @layer utilities {
     .flex-center {
         @apply flex justify-center items-center;
     }
+
     .col-center {
         @apply flex flex-col justify-center items-center;
     }
+
     .abs-center {
         @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
     }
+
     .general-title {
         @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw];
     }
@@ -60,6 +91,26 @@ body::-webkit-scrollbar {
 
     .backface-hidden {
         backface-visibility: hidden;
+    }
+
+    .filter-drop-shadow {
+        filter: var(--drop-shadow);
+    }
+
+    .bg-blue-message {
+        background: var(--blue-message-gradient);
+    }
+
+    .bg-orange-message {
+        background: var(--orange-message-gradient);
+    }
+
+    .border-gradient-horizontal {
+        border-image: var(--horizontal-scrollbar);
+    }
+
+    .scrollbar-custom {
+        scrollbar-width: thin;
     }
 }
 
@@ -76,7 +127,7 @@ body::-webkit-scrollbar {
         @apply fixed z-50 opacity-0 w-full;
 
         div {
-            @apply flex justify-between items-center gap-5 p-5;
+            @apply flex justify-between items-center gap-5 py-4 px-5;
         }
     }
 
@@ -102,15 +153,15 @@ body::-webkit-scrollbar {
                 @apply absolute top-5/9 left-1/6 -translate-x-5;
 
                 .first-tag-line {
-                    @apply text-red underline  text-shadow-red relative right-30 text-[2rem];
+                    @apply text-red underline underline-offset-10 text-shadow-red relative right-30 text-[2rem];
                 }
 
                 .second-tag-line {
-                    @apply text-green underline text-shadow-green text-[1.75rem];
+                    @apply text-green underline underline-offset-10 text-shadow-green text-[1.75rem];
                 }
 
                 .third-tag-line {
-                    @apply text-blue underline text-shadow-blue relative left-35 text-[1.5rem];
+                    @apply text-blue underline underline-offset-8 text-shadow-blue relative left-35 text-[1.5rem];
                 }
             }
 
@@ -122,7 +173,7 @@ body::-webkit-scrollbar {
                 }
 
                 .question-title {
-                    @apply text-right absolute right-0;
+                    @apply text-right absolute right-0 translate-x-15 top-25 rotate-10 text-medium-gray text-xl;
                 }
 
                 .long-arrow {
@@ -130,31 +181,119 @@ body::-webkit-scrollbar {
                     /* spans the full question section, arrow curves from top to bottom */
                 }
 
-                .question-mark {
-                    @apply border border-[#faeade33] md:size-[5vw] size-14 md:p-0 p-3 flex justify-center items-center rounded-full hover:bg-[#ffffff1a] transition-colors cursor-pointer;
+                .chat-button {
+                    @apply flex text-4xl text-silver text-shadow-silver-lg absolute bottom-30 right-13 cursor-pointer justify-center items-center rounded-full size-15 bg-radial-[at_0%_25%] from-medium-gray to-gray to-90%;
+                }
+            }
+
+            .chatbot-container {
+                @apply absolute bottom-10 right-30 w-[30em] h-[40em] bg-gradient-to-b from-[#0A0A0A] to-[#303030] rounded-[20px] grid grid-rows-[12%_76%_12%] pr-1;
+
+                .messages {
+                    @apply flex flex-col mx-[1.25em_0.25em_0_1em] overflow-auto;
+
+                    div {
+                        @apply p-4 w-fit max-w-[80%] h-fit items-center text-white border border-[#333333] rounded-[20px];
+                    }
+
+                    .user {
+                        @apply ml-auto mr-2;
+                    }
+
+                    .bot {
+                        @apply ml-0 mr-auto;
+                    }
                 }
 
-                .chat-button {
-                    @apply absolute bottom-0 right-0 cursor-pointer justify-center items-center rounded-full;
+                .chat-input-container {
+                    @apply flex items-center border-t-[3px];
+
+                    .input-box {
+                        @apply flex-grow-[5] h-[90%] resize-none overflow-auto border-none rounded-[20px] bg-gradient-to-tr from-[rgba(71,71,71,0.8)] via-transparent to-transparent mx-4 pl-4;
+                    }
+
+                    .chatbot-submit-button {
+                        @apply w-6 text-[2.5em] bg-[#474747] text-white rounded-[20px] border-none active:invert;
+                    }
                 }
             }
         }
     }
 
-    .technical-skill-container {
-        .card-container {
-            @apply relative w-50 h-50 cursor-pointer;
+    .technical-skill-section {
+        @apply min-h-dvh;
 
-            .card-front {
-                @apply flex flex-col justify-center items-center;
-            }
-
-            .card-front, .card-back {
-                @apply absolute size-full p-0 backface-hidden rounded-lg;
-            }
-
+        .pin-spacer {
+            @apply bg-gradient-to-br from-black to-gray;
         }
 
+        .slider-wrapper {
+            @apply lg:h-dvh min-h-dvh md:min-h-fit w-full mt-0 md:mt-20 xl:mt-0;
 
+            .skill-cards-container {
+                @apply h-full flex md:flex-row flex-col items-center 2xl:gap-72 lg:gap-52 md:gap-24 gap-7 flex-nowrap;
+
+                .card-container {
+                    @apply relative flex-shrink-0 w-70 h-70 cursor-pointer;
+
+                    .card-front {
+                        @apply flex flex-col justify-center items-center;
+                    }
+
+                    .card-front, .card-back {
+                        @apply absolute size-full p-0 backface-hidden rounded-lg;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-section {
+        @apply relative flex flex-col h-dvh justify-end bg-linear-to-b from-gray to-black;
+
+        .links-container {
+            @apply grid grid-cols-3 text-xl items-center px-55;
+
+            /* add hover underline, underline offset 8*/
+            .about-website-link {
+                @apply justify-self-start text-shadow-silver-lg;
+            }
+
+            .other-projects-link {
+                @apply justify-self-center text-shadow-silver-lg text-silver;
+            }
+
+            .button-container {
+                @apply justify-self-end -translate-y-3;
+
+                .button-text {
+                    @apply text-lg -translate-y-3 translate-x-2 rotate-10 text-medium-gray text-shadow-medium-gray-sm;
+                }
+
+                .to-top-button {
+                    @apply flex text-4xl text-silver text-shadow-silver-lg cursor-pointer justify-center items-center rounded-full size-15 bg-radial-[at_0%_25%] from-medium-gray to-gray to-90%;
+                }
+            }
+        }
+
+        .appreciation {
+            @apply m-10 text-xl;
+        }
+
+        .breaker {
+            @apply absolute bottom-47 left-[10%] border-1 w-[80vw] ;
+        }
+
+        .outward-links {
+            @apply m-10 gap-8 tracking-wider;
+
+            h2 {
+                @apply text-4xl text-white rounded-2xl p-3 bg-radial-[at_50%_50%] from-medium-gray via-gray to-black to-95%;
+            }
+
+            div {
+                @apply text-3xl text-silver text-shadow-silver-md;
+            }
+        }
     }
 }

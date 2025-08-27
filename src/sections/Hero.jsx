@@ -18,12 +18,49 @@ const Hero = () => {
                         <h3 className="second-tag-line">Strong communication</h3>
                         <h3 className="third-tag-line">Quick to a solution</h3>
                     </div>
-                    <div className="long-arrow-container">
-                        <img className="headshot" src="/images/Headshot.png" alt="headshot"/>
-                        <h4 className="question-title">have a quick question?</h4>
-                        <img className="long-arrow" src="/images/LongArrow.png" alt="long arrow" />
-                        <a className="chat-button" onClick={ toggleChat }>?</a>
-                    </div>
+                    {
+                        isChatOpen ? (
+                            <div className="chatbot-container filter-drop-shadow">
+                                <div className="flex justify-end items-center p-10 border-b border-gray-200 z-10">
+                                    <a onClick={ toggleChat } className="cursor-pointer text-xl">X</a>
+                                </div>
+                                <div className="messages scrollbar-custom">
+                                    <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
+                                    <div className="bot bg-orange-message">Hi</div>
+                                    <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
+                                    <div className="bot bg-orange-message">Hi</div>
+                                    <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
+                                    <div className="bot bg-orange-message">Hi</div>
+                                    <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
+                                    <div className="bot bg-orange-message">Hi</div>
+                                </div>
+                                <div className="chat-input-container border-gradient-horizontal">
+                                    <textarea
+                                       // ref={ textAreaRef }
+                                       // onChange={ handleTextAreaOnChange }
+                                       // onKeyDown={ enterToSubmit }
+                                       // value={ textAreaContent }
+                                       name="userMessage"
+                                       className="input-box scrollbar-custom"
+                                       data-testid="text_box"
+                                       placeholder="Write a message..."
+                                       rows="1"
+                                       maxLength="256">
+                                    </textarea>
+                                    <button className="chatbot-submit-button filter-drop-shadow" type="submit">&gt;</button>
+                                </div>
+                            </div>
+                            )
+                            : (
+                                <div className="long-arrow-container">
+                                    <img className="headshot" src="/images/Headshot.png" alt="headshot"/>
+                                    <h4 className="question-title">have a quick question?</h4>
+                                    <img className="long-arrow" src="/images/LongArrow.png" alt="long arrow" />
+                                    <a className="chat-button" onClick={ toggleChat }>?</a>
+                                </div>
+                            )
+                    }
+
                 </div>
             </div>
         </section>
