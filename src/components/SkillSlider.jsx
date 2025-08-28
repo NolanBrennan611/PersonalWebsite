@@ -25,10 +25,6 @@ const SkillSlider = () => {
                 },
             });
 
-            gsap.set('.pin-spacer', {
-                background: 'linear-gradient(to bottom right, #000000, #202020)'
-            });
-
             tl.to(".technical-skill-section", {
                 x: `-${ scrollAmount + 2000 }px`,
                 ease: "power1.inOut",
@@ -128,7 +124,7 @@ const SkillSlider = () => {
                 { skillCards.map(skill => (
                     <div className="card-container" key={skill.name} id={skill.name} >
                         <div
-                            className="card-front"
+                            className="card-front drop-shadow"
                             style={{ background: "linear-gradient(#0A0A0A 0%, #303030 100%)" }}
                         >
                             <img
@@ -137,7 +133,7 @@ const SkillSlider = () => {
                                 className="w-16 h-16 md:w-32 md:h-32 object-contain rounded-lg"
                             />
                         </div>
-                        <div className="card-back" style={{ background: skill.backgroundGradient }}>
+                        <div className="card-back drop-shadow" style={{ background: skill.backgroundGradient }}>
                             <img
                                 src={skill.logo}
                                 alt={`${skill.name} logo`}

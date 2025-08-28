@@ -10,17 +10,17 @@ const Hero = () => {
             <div className="hero-container">
                 <div className="hero-content">
                     <div className="main-titles overflow-hidden">
-                        <h1 className="hero-title">Nolan Brennan</h1>
-                        <h3 className="hero-subtitle">Full-Stack Developer</h3>
+                        <h1 className="hero-title drop-shadow">Nolan Brennan</h1>
+                        <h3 className="hero-subtitle drop-shadow">Full-Stack Developer</h3>
                     </div>
                     <div className="tag-lines">
-                        <h3 className="first-tag-line">Always on the initiative</h3>
-                        <h3 className="second-tag-line">Strong communication</h3>
-                        <h3 className="third-tag-line">Quick to a solution</h3>
+                        <h3 className="first-tag-line drop-shadow">Always on the initiative</h3>
+                        <h3 className="second-tag-line drop-shadow">Strong communication</h3>
+                        <h3 className="third-tag-line drop-shadow">Quick to a solution</h3>
                     </div>
                     {
                         isChatOpen ? (
-                            <div className="chatbot-container filter-drop-shadow">
+                            <div className="chatbot-container drop-shadow">
                                 <div className="flex justify-end items-center p-10 border-b border-gray-200 z-10">
                                     <a onClick={ toggleChat } className="cursor-pointer text-xl">X</a>
                                 </div>
@@ -47,16 +47,16 @@ const Hero = () => {
                                        rows="1"
                                        maxLength="256">
                                     </textarea>
-                                    <button className="chatbot-submit-button filter-drop-shadow" type="submit">&gt;</button>
+                                    <button className="chatbot-submit-button drop-shadow" type="submit">&gt;</button>
                                 </div>
                             </div>
                             )
                             : (
                                 <div className="long-arrow-container">
                                     <img className="headshot" src="/images/Headshot.png" alt="headshot"/>
-                                    <h4 className="question-title">have a quick question?</h4>
+                                    <h4 className="question-title drop-shadow">have a quick question?</h4>
                                     <img className="long-arrow" src="/images/LongArrow.png" alt="long arrow" />
-                                    <a className="chat-button" onClick={ toggleChat }>?</a>
+                                    <a className="chat-button drop-shadow" onClick={ toggleChat }>?</a>
                                 </div>
                             )
                     }

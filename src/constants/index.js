@@ -61,4 +61,28 @@ const skillCards = [
     //potentially add rotation
 ]
 
-export { skillCards };
+const educationList = [
+    {
+        id: "first",
+        title: "C# Certification Microsoft",
+        subtitle: "",
+        image: "images/microsoftlogo.svg",
+        altTag: "Microsoft Logo",
+    },
+    {
+        id: "second",
+        title: "Bachelor of Honours ACS",
+        subtitle: "University of Winnipeg",
+        image: "images/universitylogo.svg",
+        altTag: "University of Winnipeg Logo",
+    },
+    {
+        id: "third",
+        title: "Development Black Belts",
+        subtitle: "Coding Dojo",
+        image: "images/codingdojologo.svg",
+        altTag: "Coding Dojo Logo",
+    }
+]
+
+export { skillCards, educationList };

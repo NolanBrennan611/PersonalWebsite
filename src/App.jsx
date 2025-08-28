@@ -6,10 +6,12 @@ import Hero from "./sections/Hero.jsx";
 import NavBar from "./components/NavBar.jsx";
 import TechnicalSkills from "./sections/TechnicalSkills.jsx";
 import Footer from "./sections/Footer.jsx";
+import Education from "./sections/Education.jsx";
 
 gsap.registerPlugin(SplitText, ScrollSmoother, ScrollTrigger, MotionPathPlugin);
 
 const App = () => {
+
     useGSAP(() => {
         document.fonts.ready.then(() => {
             const openingSplit = new SplitText(".opening-title", {
@@ -55,7 +57,7 @@ const App = () => {
                 })
                 .to(".hero-container", {
                     opacity: 1,
-                    background: "linear-gradient(#000000, #242424)",
+                    background: "linear-gradient(#000000, #202020)",
                     duration: 1,
                 }, "-=1")
         })
@@ -73,6 +75,7 @@ const App = () => {
             <Wisp />
             <Hero />
             <TechnicalSkills />
+            <Education />
             <Footer />
         </main>
     )

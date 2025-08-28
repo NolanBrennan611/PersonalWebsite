@@ -61,7 +61,6 @@ body::-webkit-scrollbar {
             rgba(0, 0, 0, 0) 55%,
             rgba(196, 196, 196, 0) 65%
     );
-    --drop-shadow: drop-shadow(2px 4px 4px rgba(0,0,0,0.5));
 }
 
 @layer utilities {
@@ -111,6 +110,10 @@ body::-webkit-scrollbar {
 
     .scrollbar-custom {
         scrollbar-width: thin;
+    }
+
+    .drop-shadow {
+        filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.5));
     }
 }
 
@@ -220,12 +223,12 @@ body::-webkit-scrollbar {
         }
     }
 
+    .pin-spacer {
+        @apply bg-radial-[at_50%_50%] from-black to-gray;
+    }
+
     .technical-skill-section {
         @apply min-h-dvh;
-
-        .pin-spacer {
-            @apply bg-gradient-to-br from-black to-gray;
-        }
 
         .slider-wrapper {
             @apply lg:h-dvh min-h-dvh md:min-h-fit w-full mt-0 md:mt-20 xl:mt-0;
@@ -248,8 +251,65 @@ body::-webkit-scrollbar {
         }
     }
 
+    .education-section {
+        @apply min-h-dvh bg-gradient-to-b from-black to-gray;
+
+        .education-title {
+            @apply py-20 text-shadow-silver-lg;
+        }
+
+        .education-card-container {
+            @apply grid grid-cols-3 mx-auto my-10 px-40 place-items-center;
+
+            /* replace with reusable education-card class*/
+            .first-card {
+                @apply justify-self-start w-80 h-100 bg-white rounded-xl bg-gradient-to-br from-gray from-30% to-black;
+
+                img {
+                    @apply m-auto py-10;
+                }
+
+                h1 {
+                    @apply font-bold text-2xl text-shadow-medium-gray-sm;
+                }
+            }
+
+            .second-card {
+                @apply justify-self-center w-100 h-120 bg-white rounded-2xl bg-gradient-to-br from-gray from-30% to-black;
+
+                img {
+                    @apply m-auto py-10;
+                }
+
+                h1 {
+                    @apply font-bold text-3xl text-shadow-medium-gray-sm;
+                }
+
+                h2 {
+                    @apply font-bold text-2xl text-shadow-medium-gray-sm;
+                }
+            }
+
+            .third-card {
+                @apply justify-self-end w-80 h-100 bg-white rounded-xl bg-gradient-to-br from-gray from-30% to-black;
+
+                img {
+                    @apply m-auto py-10;
+                }
+
+                h1 {
+                    @apply font-bold text-2xl text-shadow-medium-gray-sm;
+                }
+            }
+
+            .glare {
+                @apply absolute w-50 h-50 opacity-0 pointer-events-none blur-xl rounded-full bg-radial-[at_50%_50%] from-white/30 to-transparent;
+            }
+        }
+    }
+
     .footer-section {
-        @apply relative flex flex-col h-dvh justify-end bg-linear-to-b from-gray to-black;
+        @apply relative flex flex-col h-[60vh] justify-end bg-linear-to-b from-gray to-black;
 
         .links-container {
             @apply grid grid-cols-3 text-xl items-center px-55;
