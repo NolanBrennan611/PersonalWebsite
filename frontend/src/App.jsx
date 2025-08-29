@@ -1,16 +1,63 @@
 import Wisp from "./components/Wisp.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { SplitText, ScrollTrigger, ScrollSmoother, MotionPathPlugin } from "gsap/all";
+import { SplitText, ScrollTrigger, MotionPathPlugin } from "gsap/all";
 import Hero from "./sections/Hero.jsx";
 import NavBar from "./components/NavBar.jsx";
 import TechnicalSkills from "./sections/TechnicalSkills.jsx";
 import Footer from "./sections/Footer.jsx";
 import Education from "./sections/Education.jsx";
+import Lenis from "@studio-freight/lenis";
+import {useEffect, useState} from "react";
 
-gsap.registerPlugin(SplitText, ScrollSmoother, ScrollTrigger, MotionPathPlugin);
+gsap.registerPlugin(SplitText, ScrollTrigger, MotionPathPlugin);
 
 const App = () => {
+    const [ ws, setWs ] = useState(null);
+
+    useEffect(() => {
+        const serverUrl = import.meta.env.VITE_APP_BACKEND_WEBSOCKET_URL;
+        const websocket = new WebSocket(serverUrl);
+        websocket.onopen = () => console.log("WebSocket connection opened");
+        websocket.onclose = () => console.log("WebSocket connection closed");
+        websocket.onerror = (error) => console.error("WebSocket error:", error);
+
+        websocket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log("Global WebSocket message: ", data);
+        };
+
+        setWs(websocket);
+
+        // if unmounted, close the socket
+        return () => {
+            console.log("WebSocket connection cleaned up");
+        };
+    }, []);
+
+    useEffect(() => {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        return () => {
+            lenis.destroy();
+            gsap.ticker.remove((time) => {
+                lenis.raf(time * 100);
+            });
+        };
+    }, []);
 
     useGSAP(() => {
         document.fonts.ready.then(() => {
@@ -63,6 +110,12 @@ const App = () => {
         })
     })
 
+    useGSAP(() => {
+        const tl = gsap.timeline();
+
+
+    })
+
     return (
         <main>
             <div
@@ -73,8 +126,11 @@ const App = () => {
             </div>
             <NavBar />
             <Wisp />
-            <Hero />
-            <TechnicalSkills />
+            <div>
+                <Hero />
+                <TechnicalSkills />
+            </div>
+
             <Education />
             <Footer />
         </main>

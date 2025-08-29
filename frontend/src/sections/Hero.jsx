@@ -6,7 +6,7 @@ const Hero = () => {
     const toggleChat = () => setIsChatOpen(!isChatOpen);
 
     return (
-        <section>
+        <section className="hero-section">
             <div className="hero-container">
                 <div className="hero-content">
                     <div className="main-titles overflow-hidden">

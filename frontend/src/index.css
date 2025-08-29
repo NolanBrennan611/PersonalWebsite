@@ -14,7 +14,6 @@ body {
     color: #c4c4c4;
     font-family: 'Averia Gruesa Libre';
     overflow-x: hidden;
-    scroll-behavior: smooth;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE 10+ */
 }
@@ -224,11 +223,11 @@ body::-webkit-scrollbar {
     }
 
     .pin-spacer {
-        @apply bg-radial-[at_50%_50%] from-black to-gray;
+        @apply bg-radial-[at_50%_50%] from-black to-gray relative;
     }
 
     .technical-skill-section {
-        @apply min-h-dvh;
+        @apply min-h-dvh relative z-11;
 
         .slider-wrapper {
             @apply lg:h-dvh min-h-dvh md:min-h-fit w-full mt-0 md:mt-20 xl:mt-0;
@@ -252,7 +251,7 @@ body::-webkit-scrollbar {
     }
 
     .education-section {
-        @apply min-h-dvh bg-gradient-to-b from-black to-gray;
+        @apply min-h-dvh bg-gradient-to-b from-black to-gray z-5;
 
         .education-title {
             @apply py-20 text-shadow-silver-lg;

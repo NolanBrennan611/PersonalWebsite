@@ -18,7 +18,7 @@ const SkillTitle = () => {
                 ease: "power1.inOut",
                 scrollTrigger: {
                     trigger: ".technical-skill-section",
-                    start: "top 30%",
+                    start: "top 40%",
                 },
             });
 
@@ -27,7 +27,7 @@ const SkillTitle = () => {
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
                 scrollTrigger: {
                     trigger: ".technical-skill-section",
-                    start: "top 10%",
+                    start: "top 30%",
                 },
             });
 
@@ -37,14 +37,14 @@ const SkillTitle = () => {
                 ease: "power1.inOut",
                 scrollTrigger: {
                     trigger: ".technical-skill-section",
-                    start: "top 1%",
+                    start: "top 20%",
                 },
             });
         })
     });
 
     return (
-        <div className="general-title col-center h-full xl:gap-16 gap-8">
+        <div className="skill-title general-title col-center h-full xl:gap-16 gap-8">
             <div className="2xl:py-0 py-3 first-text-split">
                 <h1 className="text-shadow-silver-lg">Current</h1>
             </div>
