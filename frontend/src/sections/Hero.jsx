@@ -1,12 +1,30 @@
 import { useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import Wisp from "../components/Wisp.jsx";
 
 const Hero = () => {
     const [isChatOpen, setIsChatOpen] = useState(false);
 
     const toggleChat = () => setIsChatOpen(!isChatOpen);
 
+    useGSAP(() => {
+        const heroStickTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero-section",
+                start: "top top",
+                endTrigger: ".technical-skill-section",
+                end: "top top",
+                scrub: true,
+                pin: true,
+                pinSpacing: false,
+            }
+        })
+    })
+
     return (
         <section className="hero-section">
+            <Wisp />
             <div className="hero-container">
                 <div className="hero-content">
                     <div className="main-titles overflow-hidden">

@@ -1,4 +1,3 @@
-import Wisp from "./components/Wisp.jsx";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText, ScrollTrigger, MotionPathPlugin } from "gsap/all";
@@ -125,12 +124,8 @@ const App = () => {
                 Hello there!
             </div>
             <NavBar />
-            <Wisp />
-            <div>
-                <Hero />
-                <TechnicalSkills />
-            </div>
-
+            <Hero />
+            <TechnicalSkills />
             <Education />
             <Footer />
         </main>
