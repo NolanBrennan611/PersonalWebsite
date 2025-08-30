@@ -60,6 +60,10 @@ const App = () => {
 
     useGSAP(() => {
         document.fonts.ready.then(() => {
+            gsap.set(".long-arrow", {
+                clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
+            });
+
             const openingSplit = new SplitText(".opening-title", {
                 type: "chars"
             })
@@ -106,13 +110,11 @@ const App = () => {
                     background: "linear-gradient(#000000, #202020)",
                     duration: 1,
                 }, "-=1")
+                .to(".long-arrow", {
+                    duration: 1,
+                    clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
+                })
         })
-    })
-
-    useGSAP(() => {
-        const tl = gsap.timeline();
-
-
     })
 
     return (
@@ -124,7 +126,7 @@ const App = () => {
                 Hello there!
             </div>
             <NavBar />
-            <Hero />
+            <Hero ws={ ws } />
             <TechnicalSkills />
             <Education />
             <Footer />

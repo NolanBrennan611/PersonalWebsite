@@ -4,12 +4,14 @@ import logging
 from ResponseDeterminer import ResponseDeterminer
 from config import config
 import bleach
+import sys
+import uvicorn
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Vite default port
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,7 +32,7 @@ if config.DEV_MODE:
 else:
     logger.info(f"Running in prod mode")
 
-@app.websocket("/ws")
+@app.websocket("/ws/messages")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
 
@@ -38,11 +40,14 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             data = await websocket.receive_json()
 
-            message = sanitize_message_data(data)
+            logger.info(f"Received message data: {data}")
+
+            message = data.get("message", "")
+            message = sanitize_message_data(message)
 
             message_response = ResponseDeterminer().determine_response(message)
 
-            await websocket.send_json({ "status": "success", "message": message_response })
+            await websocket.send_json({ "status": "success", "message": message })
 
     except WebSocketDisconnect:
         logger.info("Disconnected")
@@ -52,7 +57,10 @@ async def websocket_endpoint(websocket: WebSocket):
             await websocket.close()
             logger.info("WebSocket instance closed")
 
-def sanitize_message_data(data) -> str:
-    sanitized_message = bleach.clean(data.message)
+def sanitize_message_data(message: str) -> str:
+    sanitized_message = bleach.clean(message)
     sanitized_message = sanitized_message.strip().lower()
     return sanitized_message
+
+if __name__ == "__main__":
+    uvicorn.run(app, host=config.HOST, port=config.PORT)
