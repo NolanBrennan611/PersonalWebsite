@@ -2,6 +2,25 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 
 const NavBar = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
+        fetch("http://localhost:8000/download/resume").then(response => {
+            if (response.ok) {
+                response.blob().then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'NolanBrennanResume.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                });
+            } else {
+                console.error("Failed to download resume");
+            }
+        });
+    }
+
     useGSAP(() => {
         const navTween = gsap.timeline({
             scrollTrigger: {
@@ -22,7 +41,7 @@ const NavBar = () => {
         <nav className="navbar">
             <div className="navbar-container">
                 <div>Hamburg</div>
-                <a href="/resume" className="text-2xl text-silver underline">Want my resume?</a>
+                <button onClick={ handleClick } className="text-2xl text-silver underline cursor-pointer p-2">Want my resume?</button>
             </div>
         </nav>
     )

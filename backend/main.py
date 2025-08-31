@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 import logging
 from ResponseDeterminer import ResponseDeterminer
 from config import config
@@ -32,6 +33,15 @@ if config.DEV_MODE:
 else:
     logger.info(f"Running in prod mode")
 
+def sanitize_message_data(message: str) -> str:
+    sanitized_message = bleach.clean(message)
+    sanitized_message = sanitized_message.strip().lower()
+    return sanitized_message
+
+@app.get("/download/resume")
+def download_resume():
+    return FileResponse("assets/NolanBrennanResume.pdf", media_type="application/pdf", filename="NolanBrennanResume.pdf")
+
 @app.websocket("/ws/messages")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
@@ -56,11 +66,6 @@ async def websocket_endpoint(websocket: WebSocket):
         if websocket.application_state == "connected":
             await websocket.close()
             logger.info("WebSocket instance closed")
-
-def sanitize_message_data(message: str) -> str:
-    sanitized_message = bleach.clean(message)
-    sanitized_message = sanitized_message.strip().lower()
-    return sanitized_message
 
 if __name__ == "__main__":
     uvicorn.run(app, host=config.HOST, port=config.PORT)

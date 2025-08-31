@@ -191,6 +191,13 @@ body::-webkit-scrollbar {
             .chatbot-container {
                 @apply absolute bottom-10 right-30 w-[30em] h-[40em] bg-gradient-to-b from-[#0A0A0A] to-[#303030] rounded-[20px] grid grid-rows-[12%_76%_12%] pr-1;
 
+                .x-button {
+
+                    a {
+                        @apply cursor-pointer text-lg p-3 border border-gray-200 rounded-full w-10 h-10 transition duration-300 ease-in-out hover:bg-gradient-to-br hover:from-black hover:from-40% hover:to-white;
+                    }
+                }
+
                 .messages {
                     @apply flex flex-col mx-[1.25em_0.25em_0_1em] overflow-auto;
 
