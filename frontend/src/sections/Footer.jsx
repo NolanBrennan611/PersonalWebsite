@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
     return (
         <section className="footer-section">
             <div className="links-container">
-                <a className="about-website-link">
+                <Link to="/projects/PersonalWebsite" className="about-website-link">
                     the creation process
-                </a>
-                <a className="other-projects-link">
+                </Link>
+                <Link to="/projects" className="other-projects-link">
                     other works here
-                </a>
+                </Link>
                 <div className="button-container col-center">
                     <div className="button-text col-center">back to the top?</div>
                     <a className="to-top-button">
@@ -22,11 +24,11 @@ const Footer = () => {
             <div className="outward-links col-center">
                 <h2>find me elsewhere</h2>
                 <div>
-                    <a href="https://www.linkedin.com/in/nolan-brennan-4196aa1b9">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/nolan-brennan-4196aa1b9" target="_blank">LinkedIn</a>
                     &nbsp;&nbsp;/&nbsp;&nbsp;
-                    <a href="https://github.com/NolanBrennan611">Github</a>
+                    <a href="https://github.com/NolanBrennan611" target="_blank">Github</a>
                     &nbsp;&nbsp;/&nbsp;&nbsp;
-                    <a href="https://codepen.io/NolanBrennan611/">Codepen</a>
+                    <a href="https://codepen.io/NolanBrennan611/" target="_blank">Codepen</a>
                 </div>
             </div>
         </section>

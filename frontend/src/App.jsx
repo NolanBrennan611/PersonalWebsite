@@ -8,6 +8,9 @@ import Footer from "./sections/Footer.jsx";
 import Education from "./sections/Education.jsx";
 import Lenis from "@studio-freight/lenis";
 import {useEffect, useState} from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Projects from './sections/Projects';
+import ProjectSpecifics from './components/ProjectSpecifics';
 
 gsap.registerPlugin(SplitText, ScrollTrigger, MotionPathPlugin);
 
@@ -117,7 +120,7 @@ const App = () => {
         })
     })
 
-    return (
+    const Home = ({ ws }) => (
         <main>
             <div
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
@@ -126,11 +129,21 @@ const App = () => {
                 Hello there!
             </div>
             <NavBar />
-            <Hero ws={ ws } />
+            <Hero ws={ws} />
             <TechnicalSkills />
             <Education />
             <Footer />
         </main>
+    );
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home ws={ws} />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/:projectId" element={<ProjectSpecifics />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
-export default App
+export default App;

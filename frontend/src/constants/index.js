@@ -85,4 +85,43 @@ const educationList = [
     }
 ]
 
-export { skillCards, educationList };
+const projects = [
+    {
+        name: "Project 1",
+        description: "Description for Project 1",
+        skills: ["React", "FastAPI"],
+        link: "/projects/project1"
+    },
+    {
+        name: "Project 2",
+        description: "Description for Project 2",
+        skills: ["Python", "Rasa"],
+        link: "/projects/project2"
+    },
+    {
+        name: "Project 3",
+        description: "Description for Project 3",
+        skills: ["C#", ".NET"],
+        link: "/projects/project3"
+    }   
+]
+
+const projectDetails = [
+    {
+        projectId: "PersonalWebsite",
+        projectName: "Personal Website",
+        details: "Detailed information about Personal Website"
+    },
+    {
+        projectId: "project2",
+        projectName: "Project 2",
+        details: "Detailed information about Project 2"
+    },
+    {
+        projectId: "project3",
+        projectName: "Project 3",
+        details: "Detailed information about Project 3"
+    }
+]
+
+export { skillCards, educationList, projects, projectDetails };
