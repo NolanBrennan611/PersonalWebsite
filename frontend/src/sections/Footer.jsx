@@ -18,7 +18,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="appreciation col-center">
-            seriously, thanks for making it this far!
+                seriously, thanks for making it this far!
             </div>
             <hr className="breaker" />
             <div className="outward-links col-center">

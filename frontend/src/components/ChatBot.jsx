@@ -51,11 +51,11 @@ const ChatBot = ({ ws, toggleChat }) => {
     }
 
     return (
-        <div className="chatbot-container drop-shadow">
-            <div className="x-button flex justify-end items-center p-10 border-b border-gray-200 z-10">
+        <div className="chatbot-container drop-shadow" data-lenis-prevent>
+            <div className="x-button border-gradient-bottom">
                 <a onClick={ toggleChat } className="col-center">X</a>
             </div>
-                <div className="messages scrollbar-custom">
+            <div className="messages scrollbar-custom">
                 <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
                 <div className="bot bg-orange-message">Hi</div>
                 <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
@@ -65,7 +65,7 @@ const ChatBot = ({ ws, toggleChat }) => {
                 <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
                 <div className="bot bg-orange-message">Hi</div>
             </div>
-            <div className="chat-input-container border-gradient-horizontal">
+            <div className="chat-input-container border-gradient-top">
                 <textarea
                     ref={ textAreaRef }
                     onChange={ handleTextAreaOnChange }
