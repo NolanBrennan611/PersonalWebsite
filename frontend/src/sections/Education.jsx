@@ -1,12 +1,9 @@
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import Card from "../components/Card";
 import { educationList } from "../constants/index.js";
 
-const Education = ({ educationRef }) => {
-
+const Education = () => {
     return (
-        <section className="education-section" ref={ educationRef }>
+        <section className="education-section">
             <div className="education-title general-title col-center">
                 Education
             </div>

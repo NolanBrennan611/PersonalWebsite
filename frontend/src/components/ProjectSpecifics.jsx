@@ -10,8 +10,8 @@ const ProjectSpecifics = () => {
             <h2>Project Details</h2>
             {project ? (
                 <div>
-                    <h3>{project.projectName}</h3>
-                    <p>{project.details}</p>
+                    <h3>{ project.projectName }</h3>
+                    <p>{ project.details }</p>
                 </div>
             ) : (
                 <p>Project not found</p>

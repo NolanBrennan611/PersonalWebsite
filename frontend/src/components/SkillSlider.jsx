@@ -1,7 +1,7 @@
-import React, {useRef} from 'react'
-import {skillCards} from "../constants/index.js";
-import {useMediaQuery} from "react-responsive";
-import {useGSAP} from "@gsap/react";
+import { useRef } from 'react'
+import { skillCards } from "../constants/index.js";
+import { useMediaQuery } from "react-responsive";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 const SkillSlider = () => {
@@ -121,29 +121,29 @@ const SkillSlider = () => {
     return (
         <div ref={ sliderRef } className="slider-wrapper">
             <div className="skill-cards-container">
-                { skillCards.map(skill => (
-                    <div className="card-container" key={skill.name} id={skill.name} >
+                { skillCards.map(({ name, usage, experience, logo, backgroundGradient, project }) => (
+                    <div className="card-container" key={ name } id={ name } >
                         <div
                             className="card-front drop-shadow"
                             style={{ background: "linear-gradient(#0A0A0A 0%, #303030 100%)" }}
                         >
                             <img
-                                src={skill.logo}
-                                alt={`${skill.name} logo`}
+                                src={ logo }
+                                alt={`${ name } logo`}
                                 className="w-16 h-16 md:w-32 md:h-32 object-contain rounded-lg"
                             />
                         </div>
-                        <div className="card-back drop-shadow" style={{ background: skill.backgroundGradient }}>
+                        <div className="card-back drop-shadow" style={{ background: backgroundGradient }}>
                             <img
-                                src={skill.logo}
-                                alt={`${skill.name} logo`}
+                                src={ logo }
+                                alt={`${ name } logo`}
                                 className="w-16 h-16 md:w-32 md:h-32 object-contain rounded-lg"
                                 style={{ background: "linear-gradient(to top, #0A0A0A 0%, #303030 100%)" }}
                             />
                             <div style={{ background: "linear-gradient(to top, #0A0A0A 0%, #303030 100%)" }}>
-                                <h1>{ skill.name }</h1>
-                                <p>{ skill.usage }</p>
-                                <a href={ skill.experience }>{ skill.project }</a>
+                                <h1>{ name }</h1>
+                                <p>{ usage }</p>
+                                <a href={ experience }>{ project }</a>
                             </div>
                         </div>
                     </div>
