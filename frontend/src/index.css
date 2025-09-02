@@ -36,23 +36,24 @@ body::-webkit-scrollbar {
     --text-shadow-silver-md: 0 0 6px rgba(196, 196, 196, 1);
     --text-shadow-silver-lg: 0 0 8px rgba(196, 196, 196, 1);
     --text-shadow-medium-gray-sm: 0 0 4px #717171;
-    --horizontal-gradient-top: linear-gradient(
+    --horizontal-border-gradient-top: linear-gradient(
             to right,
-            rgba(128, 128, 128, 0) 0%,
-            rgba(128, 128, 128, 0.8) 50%,
-            rgba(128, 128, 128, 0) 100%
+            rgba(196, 196, 196, 0) 0%,
+            rgba(196, 196, 196, 0.8) 50%,
+            rgba(196, 196, 196, 0) 100%
     ) 1 0 0 0;
-    --horizontal-gradient-bottom: linear-gradient(
+    --horizontal-border-gradient-bottom: linear-gradient(
             to right,
-            rgba(128, 128, 128, 0) 0%,
-            rgba(128, 128, 128, 0.8) 50%,
-            rgba(128, 128, 128, 0) 100%
+            rgba(196, 196, 196, 0) 0%,
+            rgba(196, 196, 196, 0.8) 50%,
+            rgba(196, 196, 196, 0) 100%
     ) 0 0 1 0;
     --vertical-scrollbar: linear-gradient(
             to bottom,
-            rgba(128, 128, 128, 0) 0%,
-            rgba(128, 128, 128, 0.8) 50%,
-            rgba(128, 128, 128, 0) 100%
+            rgba(113, 113, 113, 0) 0%,
+            rgba(113, 113, 113, 0.8) 20%,
+            rgba(113, 113, 113, 0.8) 80%,
+            rgba(113, 113, 113, 0) 100%
     );
     --orange-message-gradient: linear-gradient(
             to top left,
@@ -110,15 +111,23 @@ body::-webkit-scrollbar {
     }
 
     .border-gradient-top {
-        border-image: var(--horizontal-gradient-top);
+        border-image: var(--horizontal-border-gradient-top);
     }
 
     .border-gradient-bottom {
-        border-image: var(--horizontal-gradient-bottom);
+        border-image: var(--horizontal-border-gradient-bottom);
     }
 
-    .scrollbar-custom {
-        scrollbar-width: thin;
+    .scrollbar-custom::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: var(--vertical-scrollbar);
     }
 
     .drop-shadow {
@@ -202,15 +211,15 @@ body::-webkit-scrollbar {
                 @apply absolute bottom-10 right-30 w-[30em] h-[40em] bg-gradient-to-b from-[#0A0A0A] to-[#303030] rounded-2xl grid grid-rows-[12%_76%_12%];
 
                 .x-button {
-                    @apply border-b border-medium-gray p-5 flex justify-end items-center rounded-t-2xl bg-gradient-to-r from-[#202020] to-black;
-                    
+                    @apply border-b p-5 flex justify-end items-center rounded-t-2xl;
+
                     a {
-                        @apply cursor-pointer text-lg p-3 border border-medium-gray text-medium-gray rounded-full w-10 h-10 transition duration-300 ease-in-out hover:bg-gradient-to-br hover:from-black hover:from-40% hover:to-silver;
+                        @apply cursor-pointer text-lg p-3 border border-silver text-silver rounded-full w-10 h-10 transition duration-300 ease-in-out hover:bg-gradient-to-br hover:from-transparent hover:from-40% hover:to-silver;
                     }
                 }
 
                 .messages {
-                    @apply flex flex-col mx-[1.25em_0.25em_0_1em] overflow-x-hidden overflow-y-auto mt-2;
+                    @apply flex flex-col overflow-x-hidden overflow-y-auto m-2;
 
                     div {
                         @apply p-4 w-fit max-w-[80%] h-fit items-center text-white border border-[#333333] rounded-[20px];
@@ -226,14 +235,22 @@ body::-webkit-scrollbar {
                 }
 
                 .chat-input-container {
-                    @apply flex items-center border-t border-medium-gray;
+                    @apply flex items-center border-t;
 
                     .input-box {
-                        @apply flex-grow-[5] h-[90%] resize-none overflow-auto border-none rounded-[20px] bg-gradient-to-tr from-[rgba(71,71,71,0.8)] via-transparent to-transparent mx-4 pl-4;
+                        @apply flex-grow-[1] min-h-[50%] max-h-[80%] resize-none overflow-auto border border-[#333333] rounded-2xl bg-gradient-to-tr from-[rgba(71,71,71,0.8)] from-20% via-transparent to-transparent my-4 ml-4 py-[6px] px-4 outline-none;
+                    }
+
+                    .input-box::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .input-box:focus::placeholder {
+                        @apply opacity-0;
                     }
 
                     .chatbot-submit-button {
-                        @apply w-6 text-[2.5em] bg-[#474747] text-white rounded-[20px] border-none active:invert;
+                        @apply cursor-pointer m-5 pb-10 text-3xl border border-silver text-silver rounded-2xl w-10 h-10 transition duration-300 ease-in-out hover:bg-gradient-to-br hover:from-transparent hover:from-60% hover:to-silver;
                     }
                 }
             }

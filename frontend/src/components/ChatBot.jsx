@@ -27,7 +27,7 @@ const ChatBot = ({ ws, toggleChat }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isSubmitting || textAreaContent.trim().length === 0) return;
-        
+
         // Check if WebSocket is available and connected
         if (!ws || ws.readyState !== WebSocket.OPEN) {
             console.error("WebSocket not connected. ReadyState:", ws?.readyState);
@@ -35,7 +35,7 @@ const ChatBot = ({ ws, toggleChat }) => {
         }
 
         setIsSubmitting(true);
-        
+
         try {
             console.log("Sending message:", textAreaContent);
             ws.send(JSON.stringify({ message: textAreaContent, is_from_user: true }));
@@ -72,7 +72,7 @@ const ChatBot = ({ ws, toggleChat }) => {
                     onKeyDown={ enterToSubmit }
                     value={ textAreaContent }
                     name="userMessage"
-                    className="input-box scrollbar-custom"
+                    className="input-box"
                     data-testid="text_box"
                     placeholder="Write a message..."
                     rows="1"
