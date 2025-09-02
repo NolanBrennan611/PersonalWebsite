@@ -100,7 +100,7 @@ const projects = [
         description: "Description for Project 3",
         skills: ["C#", ".NET"],
         link: "/projects/project3"
-    }   
+    }
 ]
 
 const projectDetails = [

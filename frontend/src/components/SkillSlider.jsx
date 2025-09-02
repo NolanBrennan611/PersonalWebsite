@@ -3,6 +3,7 @@ import { skillCards } from "../constants/index.js";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Link } from "react-router-dom";
 
 const SkillSlider = () => {
     const sliderRef = useRef();
@@ -134,16 +135,13 @@ const SkillSlider = () => {
                             />
                         </div>
                         <div className="card-back drop-shadow" style={{ background: backgroundGradient }}>
-                            <img
-                                src={ logo }
-                                alt={`${ name } logo`}
-                                className="w-16 h-16 md:w-32 md:h-32 object-contain rounded-lg"
-                                style={{ background: "linear-gradient(to top, #0A0A0A 0%, #303030 100%)" }}
-                            />
-                            <div style={{ background: "linear-gradient(to top, #0A0A0A 0%, #303030 100%)" }}>
-                                <h1>{ name }</h1>
+                            <div className="card-back-description">
+                                <h1 className="text-shadow-silver-md">{ name }</h1>
+                                <br />
                                 <p>{ usage }</p>
-                                <a href={ experience }>{ project }</a>
+                            </div>
+                            <div className="card-back-project-link">
+                                <Link to={ experience }>{ project }</Link>
                             </div>
                         </div>
                     </div>

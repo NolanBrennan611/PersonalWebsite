@@ -280,6 +280,26 @@ body::-webkit-scrollbar {
                     .card-front, .card-back {
                         @apply absolute size-full p-0 backface-hidden rounded-lg;
                     }
+
+                    .card-back {
+                        @apply flex flex-col justify-center items-center h-fit;
+
+                        .card-back-description {
+                            @apply m-5 rounded-lg;
+
+                            h1 {
+                                @apply text-center text-3xl font-bold p-4 text-white;
+                            }
+
+                            p {
+                                @apply p-4 bg-black/50 border-1 border-black/50 rounded-lg mix-blend-luminosity;
+                            }
+                        }
+
+                        .card-back-project-link {
+                            @apply text-xl bg-black/50 border-1 border-black/50 mb-5 rounded-lg p-3 mix-blend-luminosity hover:bg-white/50 hover:border-white/50 hover:text-white;
+                        }
+                    }
                 }
             }
         }
