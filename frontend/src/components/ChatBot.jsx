@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const INITIAL_TEXTAREA_HEIGHT_PIXELS = 24;
 const MAX_TEXTAREA_HEIGHT_PIXELS = 120;
@@ -7,6 +7,9 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
     const [ textAreaContent, setTextAreaContent ] = useState("");
     const [ , setTextAreaHeight ] = useState(INITIAL_TEXTAREA_HEIGHT_PIXELS);
     const [ isSubmitting, setIsSubmitting ] = useState(false);
+    const [ messages, setMessages ] = useState([
+        { id: 1, content: "Under construction, come back soon!", isUser: false }
+    ]);
     const textAreaRef = useRef(null);
 
     const handleTextAreaOnChange = (e) => {
@@ -24,6 +27,13 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
         }
     }
 
+    const addMessage = (message) => {
+        setMessages((prevMessages) => [
+            ...prevMessages,
+            { id: prevMessages.length + 1, content: message.content , isUser: message.isUser }
+        ]);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isSubmitting || textAreaContent.trim().length === 0) return;
@@ -38,6 +48,7 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
 
         try {
             console.log("Sending message:", textAreaContent);
+            addMessage({ content: textAreaContent, isUser: true });
             ws.send(JSON.stringify({ message: textAreaContent, is_from_user: true }));
             setTextAreaContent("");
             if (textAreaRef.current) {
@@ -50,20 +61,36 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
         }
     }
 
+    useEffect(() => {
+        if (ws) {
+            ws.onmessage = (event) => {
+                // setWarningVisible(false);
+                const data = JSON.parse(event.data);
+                if (data?.message) {
+                    if (data.message.status === "error") {
+                        // setWarningVisible(true);
+                    } else {
+                        addMessage({ content: data.message, isUser: false });
+                        setIsSubmitting(false);
+                    }
+                }
+            };
+        }
+    }, [ ws ]);
+
     return (
         <div ref={ chatBotRef } className="chatbot-container drop-shadow" data-lenis-prevent>
             <div className="x-button border-gradient-bottom">
                 <a ref={ closeChatBotRef } className="col-center">X</a>
             </div>
             <div className="messages scrollbar-custom">
-                <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
-                <div className="bot bg-orange-message">Hi</div>
-                <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
-                <div className="bot bg-orange-message">Hi</div>
-                <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
-                <div className="bot bg-orange-message">Hi</div>
-                <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
-                <div className="bot bg-orange-message">Hi</div>
+                {
+                    messages.map((message) => (
+                        <div key={ message.id } className={message.isUser ? "user bg-blue-message" : "bot bg-orange-message"}>
+                            { message.content }
+                        </div>
+                    ))
+                }
             </div>
             <div className="chat-input-container border-gradient-top">
                 <textarea

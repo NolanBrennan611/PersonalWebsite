@@ -13,6 +13,8 @@ class Config:
     HOST = os.getenv("HOST")
     PORT = int(os.getenv("PORT"))
 
+    CLAUDE_SERVER = os.getenv("CLAUDE_SERVER")
+
     FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN")
 
     LOG_LEVEL = logging.DEBUG if DEV_MODE else logging.INFO

@@ -18,6 +18,8 @@ const App = () => {
     const [ ws, setWs ] = useState(null);
 
     useEffect(() => {
+        if (ws?.readyState === WebSocket.OPEN) return;
+
         const serverUrl = import.meta.env.VITE_APP_BACKEND_WEBSOCKET_URL;
         const websocket = new WebSocket(serverUrl);
         websocket.onopen = () => console.log("WebSocket connection opened");

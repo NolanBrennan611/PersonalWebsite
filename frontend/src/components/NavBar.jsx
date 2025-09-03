@@ -116,7 +116,7 @@ const NavBar = () => {
                     <li onClick={ () => scrollToSection('education-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Education</a></li>
                     <li onClick={ () => scrollToSection('footer-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Contact</a></li>
                 </ul>
-                <button onClick={ handleClick }  className="text-2xl text-silver underline cursor-pointer p-2">Want my resume?</button>
+                <button onClick={ handleClick }  className="text-2xl text-silver underline cursor-pointer p-2 hover:text-shadow-silver-lg">Want my resume?</button>
             </div>
         </nav>
     )
