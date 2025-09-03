@@ -178,7 +178,7 @@ body::-webkit-scrollbar {
                 }
 
                 .second-tag-line {
-                    @apply text-green underline underline-offset-10 text-shadow-green text-[1.75rem];
+                    @apply text-green p-3 underline underline-offset-10 text-shadow-green text-[1.75rem];
                 }
 
                 .third-tag-line {
@@ -190,7 +190,7 @@ body::-webkit-scrollbar {
                 @apply absolute flex right-30 bottom-0;
 
                 .headshot {
-                    @apply flex-shrink-0 mr-40;
+                    @apply flex-shrink-0 mr-40 pointer-events-none;
                 }
 
                 .question-title {
@@ -199,11 +199,23 @@ body::-webkit-scrollbar {
 
                 .long-arrow {
                     @apply absolute top-40 right-0 pointer-events-none;
-                    /* spans the full question section, arrow curves from top to bottom */
                 }
 
                 .chat-button {
                     @apply flex text-4xl text-silver text-shadow-silver-lg absolute bottom-30 right-13 cursor-pointer justify-center items-center rounded-full size-15 bg-radial-[at_0%_25%] from-medium-gray to-gray to-90%;
+                }
+
+                .chat-button::before {
+                    content: '';
+                    @apply absolute inset-0 rounded-full z-0 transition-transform duration-500 ease-in-out rotate-0;
+                }
+
+                .chat-button span {
+                    @apply relative z-10;
+                }
+
+                .chat-button:hover::before {
+                    @apply rotate-360 bg-radial-[at_0%_25%] from-medium-gray to-gray to-90%;
                 }
             }
 

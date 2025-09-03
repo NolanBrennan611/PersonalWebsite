@@ -69,6 +69,12 @@ const NavBar = () => {
             }
         }
 
+        gsap.set(hamburgerMenuRef.current, {
+            opacity: 1,
+            scale: 1,
+            visibility: "visible",
+        })
+
         gsap.set(menuListRef.current, {
             opacity: 0,
             visibility: "hidden"
@@ -79,34 +85,21 @@ const NavBar = () => {
             x: 50
         });
 
-        // Build the timeline
         navItemTween
             .to(hamburgerMenuRef.current, {
                 opacity: 0,
                 scale: 0.8,
-                duration: 0.2,
-                ease: "power1.inOut",
                 visibility: "none"
             })
             .to(menuListRef.current, {
                 opacity: 1,
                 visibility: "visible",
-                duration: 0.1,
-                ease: "power1.inOut"
             })
-            .to(closeMenuRef.current, {
+            .to(menuListRef.current.children, {
                 opacity: 1,
                 x: 0,
-                duration: 0.1,
-                ease: "power1.inOut"
-            })
-            .to(Array.from(menuListRef.current.children).slice(1), {
-                opacity: 1,
-                x: 0,
-                duration: 0.3,
                 stagger: 0.1,
-                ease: "power1.inOut",
-            }, ">")
+            })
 
         hamburgerMenuRef.current.addEventListener('click', flipAnimation)
         closeMenuRef.current.addEventListener('click', flipAnimation)
@@ -115,9 +108,9 @@ const NavBar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <a ref={ hamburgerMenuRef } className="ml-8 menu-button w-12 h-12 drop-shadow cursor-pointer"><img src="/images/Hamburger.png" alt="Menu"/></a>
+                <a ref={ hamburgerMenuRef } className="ml-8 menu-button w-12 h-12 drop-shadow cursor-pointer"><img className="scale-100 hover:scale-125 transition-transform duration-100" src="/images/Hamburger.png" alt="Menu"/></a>
                 <ul ref={ menuListRef } className="absolute flex flex-row items-center text-xl gap-15 mx-10 cursor-pointer">
-                    <li ref={ closeMenuRef } className="drop-shadow border border-silver text-2xl col-center text-silver rounded-full w-10 h-10 transition duration-300 ease-in-out hover:bg-gradient-to-br hover:from-black hover:from-40% hover:to-silver"><a>&lt;</a></li>
+                    <li ref={ closeMenuRef } className="drop-shadow border border-silver text-2xl col-center text-silver rounded-full w-10 h-10 transition-colors duration-300 ease-in-out hover:bg-gradient-to-br hover:from-black hover:from-40% hover:to-silver"><a>&lt;</a></li>
                     <li onClick={ () => scrollToSection('hero-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Home</a></li>
                     <li onClick={ () => scrollToSection('technical-skill-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Skills</a></li>
                     <li onClick={ () => scrollToSection('education-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Education</a></li>

@@ -1,13 +1,14 @@
-import { useState } from "react";
+import {useRef, useState} from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Wisp from "../components/Wisp.jsx";
 import ChatBot from "../components/ChatBot.jsx";
 
 const Hero = ({ ws }) => {
-    const [isChatOpen, setIsChatOpen] = useState(false);
-
-    const toggleChat = () => setIsChatOpen(!isChatOpen);
+    const arrowContainerRef = useRef(null);
+    const chatBotRef = useRef(null);
+    const closeChatBotRef = useRef(null);
+    const openChatBotRef = useRef(null);
 
     useGSAP(() => {
         const heroStickTl = gsap.timeline({
@@ -21,6 +22,51 @@ const Hero = ({ ws }) => {
                 pinSpacing: false,
             }
         })
+
+        const navItemTween = gsap.timeline({
+            paused: true,
+            reversed: true,
+        })
+
+        const flipAnimation = () => {
+            if(navItemTween.reversed()) {
+                navItemTween.play();
+            } else {
+                navItemTween.reverse();
+            }
+        }
+
+        gsap.set(arrowContainerRef.current.children, {
+            opacity: 1,
+            y: 0,
+        })
+
+        gsap.set(arrowContainerRef.current, {
+            visibility: "visible",
+        })
+
+        gsap.set(chatBotRef.current, {
+            visibility: "hidden",
+            opacity: 0,
+            y: 50
+        });
+
+        navItemTween
+            .to(arrowContainerRef.current.children, {
+                opacity: 0,
+                y: 50,
+            })
+            .to(arrowContainerRef.current, {
+                visibility: "hidden",
+            })
+            .to(chatBotRef.current, {
+                visibility: "visible",
+                opacity: 1,
+                y: 0
+            })
+
+        openChatBotRef.current.addEventListener("click", flipAnimation);
+        closeChatBotRef.current.addEventListener("click", flipAnimation);
     })
 
     return (
@@ -37,19 +83,16 @@ const Hero = ({ ws }) => {
                         <h3 className="second-tag-line drop-shadow">Strong communication</h3>
                         <h3 className="third-tag-line drop-shadow">Quick to a solution</h3>
                     </div>
-                    {
-                        isChatOpen ? (
-                             <ChatBot ws={ ws } toggleChat={ toggleChat } />
-                            )
-                            : (
-                                <div className="long-arrow-container">
-                                    <img className="headshot" src="/images/Headshot.png" alt="headshot"/>
-                                    <h4 className="question-title drop-shadow">have a quick question?</h4>
-                                    <img className="long-arrow" src="/images/LongArrow.png" alt="long arrow" />
-                                    <a className="chat-button drop-shadow" onClick={ toggleChat }>?</a>
-                                </div>
-                            )
-                    }
+
+                    <div >
+                        <ChatBot ws={ ws } chatBotRef={ chatBotRef } closeChatBotRef={ closeChatBotRef } />
+                        <div ref={ arrowContainerRef } className="long-arrow-container">
+                            <img className="headshot" src="/images/Headshot.png" alt="headshot"/>
+                            <h4 className="question-title drop-shadow">have a quick question?</h4>
+                            <img className="long-arrow" src="/images/LongArrow.png" alt="long arrow" />
+                            <a ref={ openChatBotRef } className="chat-button drop-shadow"><span>?</span></a>
+                        </div>
+                    </div>
 
                 </div>
             </div>

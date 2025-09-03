@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 const INITIAL_TEXTAREA_HEIGHT_PIXELS = 24;
 const MAX_TEXTAREA_HEIGHT_PIXELS = 120;
 
-const ChatBot = ({ ws, toggleChat }) => {
+const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
     const [ textAreaContent, setTextAreaContent ] = useState("");
     const [ , setTextAreaHeight ] = useState(INITIAL_TEXTAREA_HEIGHT_PIXELS);
     const [ isSubmitting, setIsSubmitting ] = useState(false);
@@ -51,9 +51,9 @@ const ChatBot = ({ ws, toggleChat }) => {
     }
 
     return (
-        <div className="chatbot-container drop-shadow" data-lenis-prevent>
+        <div ref={ chatBotRef } className="chatbot-container drop-shadow" data-lenis-prevent>
             <div className="x-button border-gradient-bottom">
-                <a onClick={ toggleChat } className="col-center">X</a>
+                <a ref={ closeChatBotRef } className="col-center">X</a>
             </div>
             <div className="messages scrollbar-custom">
                 <div className="user bg-blue-message">If the text is a single line within a container of fixed height, setting the line-height of the text element to be equal to the height of its parent container will center the text vertically.</div>
