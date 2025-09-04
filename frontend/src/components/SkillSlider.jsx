@@ -52,7 +52,10 @@ const SkillSlider = () => {
                 .to(".second-text-split", {
                     xPercent: -10,
                     ease: "power1.inOut",
-                }, "<");
+                }, "<")
+                .to(".rounded-arrow-container", {
+                    clipPath: "polygon(-20% -20%, 120% -20%, 120% 120%, -20% 120%)",
+                });
         }
 
         // Set up 3D transforms for containers
@@ -121,6 +124,10 @@ const SkillSlider = () => {
 
     return (
         <div ref={ sliderRef } className="slider-wrapper">
+            <div className="rounded-arrow-container absolute top-35 -translate-x-10" style={{ clipPath: "polygon(-20% -20%, -20% -20%, -20% 120%, -20% 120%)" }}>
+                <div className="rotate-10 -translate-y-3 translate-x-6 text-medium-gray text-shadow-medium-gray-sm">tap on a card!</div>
+                <span><img className="rotate-10" src="/images/rounded-arrow.png" alt="Rounded arrow" /></span>
+            </div>
             <div className="skill-cards-container">
                 { skillCards.map(({ name, usage, experience, logo, backgroundGradient, project }) => (
                     <div className="card-container" key={ name } id={ name } >

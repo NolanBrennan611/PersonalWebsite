@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = ({ scrollToSection }) => {
     return (
         <section className="footer-section">
             <div className="links-container">
@@ -12,8 +12,8 @@ const Footer = () => {
                 </Link>
                 <div className="button-container col-center">
                     <div className="button-text col-center">back to the top?</div>
-                    <a className="to-top-button">
-                        &#8593;
+                    <a onClick={() => scrollToSection('hero-section')} className="to-top-button">
+                        <span><img src="/images/uparrow.png" alt="Up arrow" /></span>
                     </a>
                 </div>
             </div>
@@ -29,6 +29,8 @@ const Footer = () => {
                     <a href="https://github.com/NolanBrennan611" target="_blank">Github</a>
                     &nbsp;&nbsp;/&nbsp;&nbsp;
                     <a href="https://codepen.io/NolanBrennan611/" target="_blank">Codepen</a>
+                    &nbsp;&nbsp;/&nbsp;&nbsp;
+                    <a href="mailto:nolanbrennan611@gmail.com">Email</a>
                 </div>
             </div>
         </section>

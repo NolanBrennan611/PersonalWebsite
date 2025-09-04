@@ -2,7 +2,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 import {useRef, useState} from "react";
 
-const NavBar = () => {
+const NavBar = ({ scrollToSection }) => {
     const hamburgerMenuRef = useRef(null);
     const closeMenuRef = useRef(null);
     const menuListRef = useRef(null);
@@ -25,21 +25,6 @@ const NavBar = () => {
             }
         });
     }
-
-    const scrollToSection = (className) => {
-        const section = document.querySelector(`.${className}`);
-        const elementPosition = section.getBoundingClientRect().top;
-        let offsetPosition = elementPosition + window.pageYOffset;
-        const viewportHeight = window.innerHeight;
-        if(className === 'hero-section') {
-            offsetPosition = elementPosition + window.pageYOffset - viewportHeight;
-        }
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
-    };
 
     useGSAP(() => {
         const navBlurTween = gsap.timeline({

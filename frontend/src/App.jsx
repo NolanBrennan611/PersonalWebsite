@@ -122,6 +122,21 @@ const App = () => {
         })
     })
 
+    const scrollToSection = (className) => {
+        const section = document.querySelector(`.${className}`);
+        const elementPosition = section.getBoundingClientRect().top;
+        let offsetPosition = elementPosition + window.scrollY;
+        const viewportHeight = window.innerHeight;
+        if(className === 'hero-section') {
+            offsetPosition = elementPosition + window.scrollY - viewportHeight;
+        }
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
+
     const Home = ({ ws }) => (
         <main>
             <div
@@ -130,11 +145,11 @@ const App = () => {
             >
                 Hello there!
             </div>
-            <NavBar />
+            <NavBar scrollToSection={ scrollToSection } />
             <Hero ws={ws} />
             <TechnicalSkills />
             <Education />
-            <Footer />
+            <Footer scrollToSection={ scrollToSection } />
         </main>
     );
 
