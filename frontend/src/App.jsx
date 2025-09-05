@@ -8,9 +8,10 @@ import Footer from "./sections/Footer.jsx";
 import Education from "./sections/Education.jsx";
 import Lenis from "@studio-freight/lenis";
 import {useEffect, useState} from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Projects from './sections/Projects';
 import ProjectSpecifics from './components/ProjectSpecifics';
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, MotionPathPlugin);
 
@@ -155,10 +156,12 @@ const App = () => {
 
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Home ws={ws} />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:projectId" element={<ProjectSpecifics />} />
+                <Route path="*" element={<Navigate to="/" replace />}/>
             </Routes>
         </BrowserRouter>
     )

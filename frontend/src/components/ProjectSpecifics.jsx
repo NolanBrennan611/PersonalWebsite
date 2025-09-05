@@ -1,20 +1,31 @@
 import { projectDetails } from "../constants"
-import { useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 
 const ProjectSpecifics = () => {
     const { projectId } = useParams();
     const project = projectDetails.find(p => p.projectId === projectId);
+    const navigate = useNavigate();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        navigate(-1);
+    }
 
     return (
-        <section className="project-specifics">
-            <h2>Project Details</h2>
+        <section className="project-specifics col-center">
             {project ? (
-                <div>
-                    <h3>{ project.projectName }</h3>
-                    <p>{ project.details }</p>
+                <div className="project-wrapper">
+                    <div className="project-container">
+                        <h3 className="project-detail-title col-center text-shadow-silver-md">{ project.projectName }</h3>
+                        <video src={`${ project.src }`} playsInline muted loop className="project-preview"></video>
+                        <p className="project-details">{ project.details }</p>
+                        <a className="project-external-link col-center" href={`${ project.link }`}>View Project</a>
+                    </div>
+                    <a onClick={ handleClick }>Go Back</a>
                 </div>
+
             ) : (
-                <p>Project not found</p>
+                <Navigate to="/projects" replace />
             )}
         </section>
     )

@@ -476,4 +476,28 @@ body::-webkit-scrollbar {
             }
         }
     }
+
+    .project-specifics {
+        @apply w-full h-dvh bg-gradient-to-b from-black to-gray;
+
+        .project-container {
+            @apply grid grid-rows-[15%_70%_15%] grid-cols-2 w-[50vw] h-[70vh] bg-gradient-to-b from-gray to-[#0A0A0A] rounded-2xl;
+
+            .project-detail-title {
+                @apply text-5xl col-span-2;
+            }
+
+            .project-preview {
+                @apply row-start-2 col-start-1 w-[80%] aspect-video;
+            }
+
+            .project-details {
+                @apply row-start-2 col-start-2;
+            }
+
+            .project-external-link {
+                @apply text-2xl row-start-3 col-span-2;
+            }
+        }
+    }
 }

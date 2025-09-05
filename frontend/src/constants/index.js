@@ -55,7 +55,7 @@ const skillCards = [
         backgroundGradient: "linear-gradient(#DF6C20, #F9F9F9)",
         project: "Project 7",
     }
-//     have character pop out when clicking a link to a ref of another skill incase of skipping
+//     have character pop out when clicking a link to a ref of another skill in case of skipping
 ]
 
 const educationList = [
@@ -89,6 +89,16 @@ const projects = [
         link: "/projects/PersonalWebsite"
     },
     {
+        name: "Spylt Website Recreation",
+        skillImages: ["images/react.png", "images/python.png", "images/gsap.png"],
+        link: "/projects/SpyltWebsiteRemake"
+    },
+    {
+        name: "Cocktail Website",
+        skillImages: ["images/react.png", "images/python.png", "images/gsap.png"],
+        link: "/projects/CocktailWebsite"
+    },
+    {
         name: "Voronoi Stippling",
         skillImages: ["images/javascript.png"],
         link: "/projects/VoronoiStippling"
@@ -118,18 +128,42 @@ const projectDetails = [
         projectId: "PersonalWebsite",
         projectName: "Personal Website",
         details: "Detailed information about Personal Website",
-        link: "https://nolanbrennan.dev"
+        link: "https://nolanbrennan.dev",
+        src: "/videos/f1.mp4"
+    },
+    {
+        projectId: "SpyltWebsiteRemake",
+        projectName: "Spylt Website Remake",
+        details: "Detailed information about Personal Website",
+        link: "https://github.com/NolanBrennan611/SpyltRemake",
+        src: "/videos/f1.mp4"
+    },
+    {
+        projectId: "CocktailWebsite",
+        projectName: "Cocktail Website",
+        details: "Detailed information about Personal Website",
+        link: "https://github.com/NolanBrennan611/CocktailWebsite",
+        src: "/videos/f1.mp4"
     },
     {
         projectId: "VoronoiStippling",
         projectName: "Voronoi Stippling",
         details: "Detailed information about Project 2",
-        link: "https://codepen.io/NolanBrennan611/full/JoPoWwN"
+        link: "https://codepen.io/NolanBrennan611/full/JoPoWwN",
+        src: "/videos/f1.mp4"
     },
     {
-        projectId: "project3",
-        projectName: "Project 3",
-        details: "Detailed information about Project 3"
+        projectId: "HomeInspectionWebsite",
+        projectName: "Home Inspection Website",
+        details: "Detailed information about Project 3",
+        link: "https://github.com/NolanBrennan611/HomeInspectionWebsite",
+        src: "/videos/f1.mp4"
+    },
+    {
+        projectId: "InvoiceDigitizingTool",
+        projectName: "Invoice Digitizing Tool",
+        details: "Detailed information about Project 3",
+        src: "/videos/f1.mp4"
     }
 ]
 

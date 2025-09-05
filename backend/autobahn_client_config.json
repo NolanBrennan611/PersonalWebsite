@@ -1,0 +1,15 @@
+{
+  "outdir": "./reports/clients",
+  "servers": [
+    {
+      "agent": "YourWebSocketServer",
+      "url": "ws://localhost:8000/ws",
+      "options": {
+        "version": 18
+      }
+    }
+  ],
+  "cases": ["*"],
+  "exclude-cases": [],
+  "exclude-agent-cases": {}
+}
