@@ -1,6 +1,7 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ scrollToSection }) => {
     const hamburgerMenuRef = useRef(null);
@@ -93,11 +94,12 @@ const NavBar = ({ scrollToSection }) => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                <a ref={ hamburgerMenuRef } className="ml-8 menu-button w-12 h-12 drop-shadow cursor-pointer"><img className="scale-100 hover:scale-125 transition-transform duration-100" src="/images/Hamburger.png" alt="Menu"/></a>
-                <ul ref={ menuListRef } className="absolute flex flex-row items-center text-xl gap-15 mx-10 cursor-pointer">
-                    <li ref={ closeMenuRef } className="drop-shadow border border-silver text-2xl col-center text-silver rounded-full w-10 h-10 transition-colors duration-300 ease-in-out hover:bg-gradient-to-br hover:from-black hover:from-40% hover:to-silver"><a>&lt;</a></li>
+                <a ref={ hamburgerMenuRef } className="menu-button"><img className="scale-100 hover:scale-125 transition-transform duration-100" src="/images/Hamburger.png" alt="Menu"/></a>
+                <ul ref={ menuListRef } className="nav-items">
+                    <li ref={ closeMenuRef } className="drop-shadow border border-silver text-2xl col-center text-silver rounded-full w-10 h-10"><a>&lt;</a></li>
                     <li onClick={ () => scrollToSection('hero-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Home</a></li>
                     <li onClick={ () => scrollToSection('technical-skill-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Skills</a></li>
+                    <Link to="/projects" className="drop-shadow text-silver hover:text-shadow-silver-md">Projects</Link>
                     <li onClick={ () => scrollToSection('education-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Education</a></li>
                     <li onClick={ () => scrollToSection('footer-section') }><a className="drop-shadow text-silver hover:text-shadow-silver-md">Contact</a></li>
                 </ul>

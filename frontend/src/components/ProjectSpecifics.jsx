@@ -1,5 +1,5 @@
 import { projectDetails } from "../constants"
-import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams, Link } from "react-router-dom"
 
 const ProjectSpecifics = () => {
     const { projectId } = useParams();
@@ -21,7 +21,9 @@ const ProjectSpecifics = () => {
                         <p className="project-details">{ project.details }</p>
                         <a className="project-external-link col-center" href={`${ project.link }`}>View Project</a>
                     </div>
-                    <a onClick={ handleClick }>Go Back</a>
+                    <div className="col-center m-5">
+                        <a onClick={handleClick} className="p-4 border-1 rounded-xl transition-colors duration-300 ease-in-out hover:bg-gradient-to-br hover:from-transparent hover:from-40% hover:to-silver">Go Back</a>
+                    </div>
                 </div>
 
             ) : (

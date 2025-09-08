@@ -7,8 +7,8 @@ import TechnicalSkills from "./sections/TechnicalSkills.jsx";
 import Footer from "./sections/Footer.jsx";
 import Education from "./sections/Education.jsx";
 import Lenis from "@studio-freight/lenis";
-import {useEffect, useState} from "react";
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Projects from './sections/Projects';
 import ProjectSpecifics from './components/ProjectSpecifics';
 import ScrollToTop from "./components/ScrollToTop.jsx";
@@ -74,7 +74,23 @@ const App = () => {
                 type: "chars"
             })
 
-            const tl = gsap.timeline()
+            const tl = gsap.timeline();
+
+            gsap.set(".hero-container", {
+                backgroundColor: "black"
+            });
+
+            gsap.set(".hero-content", {
+                opacity: 0,
+            })
+
+            gsap.set(".navbar", {
+                opacity: 0,
+            })
+
+            gsap.set(".opening-title", {
+                opacity: 1,
+            })
 
             tl
                 .from(openingSplit.chars, {
@@ -100,8 +116,13 @@ const App = () => {
                 .to(".wisp", {
                     duration: 2,
                     scale: 3,
-                    motionPath: {
-                        path: [{x: 0, y: 0}, {x: -250, y: -50}, {x: -500, y: -200}],
+                    motionPath: { 
+                        // 2xl: [{x: 0, y: 0}, {x: -250, y: -50}, {x: -500, y: -200}]
+                        // xl: [{x: 0, y: 0}, {x: -215, y: -60}, {x: -435, y: -125}]
+                        // lg: [{x: 0, y: 0}, {x: -160, y: -60}, {x: -335, y: -125}]
+                        // md: [{x: 0, y: 0}, {x: -95, y: -60}, {x: -190, y: -125}] 
+                        // sm: [{x: 0, y: 0}, {x: -80, y: -60}, {x: -160, y: -125}]
+                        path: [{x: 0, y: 0}, {x: -215, y: -60}, {x: -435, y: -125}],
                         fromCurrent: true,
                         autoRotate: false,
                     },
@@ -111,17 +132,17 @@ const App = () => {
                     opacity: 1,
                     duration: 1,
                 })
-                .to(".hero-container", {
-                    opacity: 1,
-                    background: "linear-gradient(#000000, #202020)",
+                .to(".hero-content", {
                     duration: 1,
+                    opacity: 1,
                 }, "-=1")
                 .to(".long-arrow", {
                     duration: 1,
                     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
-                })
-        })
-    })
+                }); 
+
+        });
+    }, []);
 
     const scrollToSection = (className) => {
         const section = document.querySelector(`.${className}`);
@@ -142,7 +163,7 @@ const App = () => {
         <main>
             <div
                 style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
-                className="abs-center opening-title"
+                className="abs-center opening-title opacity-0"
             >
                 Hello there!
             </div>
