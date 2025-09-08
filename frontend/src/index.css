@@ -152,7 +152,7 @@ body::-webkit-scrollbar {
         @apply fixed z-9 w-full;
 
         .navbar-container {
-            @apply flex justify-between items-center gap-5 py-4 px-5; 
+            @apply flex justify-between items-center gap-5 py-4 px-5;
 
             .menu-button {
                 @apply ml-8 w-12 h-12 drop-shadow cursor-pointer;
@@ -206,11 +206,11 @@ body::-webkit-scrollbar {
                 }
 
                 .question-title {
-                    @apply absolute right-0 translate-x-15 2xl:top-25 rotate-10 text-medium-gray 2xl:text-xl md:text-lg xl:-top-12 lg:bottom-50 lg:right-12 bottom-45 right-16 sm:text-sm;
+                    @apply absolute 2xl:top-0 xl:top-5 rotate-10 text-medium-gray 2xl:text-xl lg:bottom-50 lg:right-12 lg:text-lg bottom-45 right-16 sm:text-sm;
                 }
 
                 .long-arrow {
-                    @apply absolute 2xl:top-40 xl:-top-4 right-0 pointer-events-none invisible xl:visible;
+                    @apply absolute xl:top-15 right-0 pointer-events-none invisible xl:visible;
                 }
 
                 .chat-button {
@@ -339,11 +339,11 @@ body::-webkit-scrollbar {
         .education-card-container {
             /* Responsive grid and padding */
             @apply grid mx-auto my-0 px-4;
-            @apply sm:px-8 sm:my-0;
-            @apply lg:px-12 lg:my-10;
+            @apply sm:px-8;
+            @apply lg:px-12 lg:pb-20;
             @apply xl:px-20;
             @apply 2xl:px-40;
-            
+
             /* Grid layout: single column on mobile, 3 columns on larger screens */
             @apply grid-cols-1 place-items-center gap-8;
             @apply md:grid-cols-3 md:gap-4 lg:gap-6;
@@ -376,7 +376,7 @@ body::-webkit-scrollbar {
 
             .second-card {
                 @apply justify-self-center bg-white rounded-2xl bg-gradient-to-br from-gray from-30% to-black;
-                
+
                 @apply w-70 max-w-md h-60;
                 @apply sm:w-72 sm:h-64;
                 @apply md:w-64 md:h-72;
@@ -401,7 +401,7 @@ body::-webkit-scrollbar {
 
             .third-card {
                 @apply justify-self-end bg-white rounded-xl bg-gradient-to-br from-gray from-30% to-black;
-                
+
                 @apply w-50 max-w-sm h-48;
                 @apply sm:w-60 sm:h-58;
                 @apply md:w-52 md:h-58;
@@ -419,7 +419,7 @@ body::-webkit-scrollbar {
                 }
 
                 h2 {
-                    @apply text-center px-2;
+                    @apply text-center text-shadow-medium-gray-sm px-2;
                     @apply text-xs sm:text-sm lg:text-lg xl:text-xl;
                 }
             }
@@ -435,26 +435,26 @@ body::-webkit-scrollbar {
     @media (max-width: 480px) {
         .education-section .education-card-container {
             @apply px-2 gap-6;
-            
+
             .first-card, .third-card {
                 @apply h-40 max-w-xs;
 
                 img {
                     @apply my-3;
                 }
-                
+
                 h1 {
                     @apply text-sm;
                 }
             }
-            
+
             .second-card {
                 @apply h-48 max-w-sm;
-                
+
                 img {
                     @apply my-2;
                 }
-                
+
                 h1 {
                     @apply text-lg;
                 }
@@ -463,7 +463,7 @@ body::-webkit-scrollbar {
     }
 
     .footer-section {
-        @apply relative flex flex-col h-[60vh] justify-end bg-linear-to-b from-gray to-black;
+        @apply relative flex flex-col h-[45vh] justify-end bg-linear-to-b from-gray to-black;
 
         .links-container {
             @apply grid grid-cols-3 xl:text-xl md:text-lg text-sm items-center xl:px-55 lg:px-45 md:px-35 sm:px-25 px-15;
@@ -529,34 +529,34 @@ body::-webkit-scrollbar {
     }
 
     .projects-section {
-        @apply h-full bg-gradient-to-b from-black to-gray px-10;
+        @apply h-full bg-gradient-to-b from-black to-gray px-4 sm:px-6 md:px-8 lg:px-10;
 
         .home-button {
-            @apply absolute text-xl top-6 right-10 text-shadow-silver-md scale-100 transition-transform hover:scale-110;
+            @apply absolute text-lg sm:text-xl top-4 right-4 sm:top-6 sm:right-6 lg:right-10 text-shadow-silver-md scale-100 transition-transform hover:scale-110;
         }
 
         .projects-container {
             @apply flex flex-col;
 
             .row-titles {
-                @apply text-3xl text-shadow-silver-md mt-5 px-5;
+                @apply text-xl sm:text-2xl lg:text-3xl text-shadow-silver-md mt-4 sm:mt-5 px-3 sm:px-4 lg:px-5;
             }
 
             .project-row {
-                @apply flex gap-10 p-5 overflow-x-auto;
+                @apply flex gap-4 sm:gap-6 lg:gap-10 p-3 sm:p-4 lg:p-5 overflow-x-auto;
 
                 .project-card {
-                    @apply w-70 h-70 bg-gradient-to-b from-gray to-[#0A0A0A] rounded-2xl p-5 flex-shrink-0;
+                    @apply w-60 h-60 sm:w-64 sm:h-64 md:w-70 md:h-70 bg-gradient-to-b from-gray to-[#0A0A0A] rounded-xl sm:rounded-2xl p-4 sm:p-5 flex-shrink-0 flex flex-col;
 
                     .project-title {
-                        @apply text-xl text-shadow-silver-sm py-5;
+                        @apply text-lg sm:text-xl text-shadow-silver-sm py-3 sm:py-4 lg:py-5;
                     }
 
                     .skill-images {
-                        @apply flex w-full gap-5 justify-center;
+                        @apply flex w-full gap-3 sm:gap-4 lg:gap-5 justify-center flex-wrap;
 
                         img {
-                            @apply w-15 h-15 object-contain rounded-xl;
+                            @apply w-12 h-12 sm:w-14 sm:h-14 lg:w-15 lg:h-15 object-contain rounded-lg sm:rounded-xl;
                         }
                     }
                 }
@@ -568,26 +568,88 @@ body::-webkit-scrollbar {
         }
     }
 
+    @media (max-width: 480px) {
+        .projects-section {
+            .home-button {
+                @apply text-base;
+            }
+
+            .projects-container {
+                .row-titles {
+                    @apply text-lg mt-3 px-2;
+                }
+
+                .project-row {
+                    @apply gap-3 p-2;
+
+                    .project-card {
+                        @apply w-56 h-56 p-3 rounded-lg;
+
+                        .project-title {
+                            @apply text-base py-2;
+                        }
+
+                        .skill-images {
+                            @apply gap-2;
+
+                            img {
+                                @apply w-10 h-10 rounded-md;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .project-specifics {
-        @apply w-full h-dvh bg-gradient-to-b from-black to-gray;
+        @apply w-full min-h-dvh bg-gradient-to-b from-black to-gray px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12 flex items-center justify-center;
 
         .project-container {
-            @apply grid grid-rows-[15%_70%_15%] grid-cols-2 w-[50vw] h-[70vh] bg-gradient-to-b from-gray to-[#0A0A0A] rounded-2xl;
+            @apply w-full max-w-6xl bg-gradient-to-b from-gray to-[#0A0A0A] rounded-2xl p-4 sm:p-6 md:p-8;
+
+            @apply grid gap-4 sm:gap-6;
+            @apply grid-rows-[auto_auto_auto_auto] grid-cols-1;
+            @apply sm:grid-rows-[auto_1fr_auto] sm:grid-cols-2;
+            @apply lg:max-w-5xl lg:h-[70vh] lg:min-h-[600px] lg:grid-rows-[15%_70%_15%];
 
             .project-detail-title {
-                @apply text-5xl col-span-2;
+                @apply text-2xl sm:text-3xl lg:text-5xl font-bold text-center;
+                @apply col-span-1 sm:col-span-2;
             }
 
             .project-preview {
-                @apply row-start-2 col-start-1 w-[80%] aspect-video;
+                @apply w-full aspect-video rounded-lg overflow-hidden;
+                @apply sm:w-[85%] sm:justify-self-center sm:row-start-2 sm:col-start-1;
+                @apply lg:w-[80%];
             }
 
             .project-details {
-                @apply row-start-2 col-start-2;
+                @apply text-sm sm:text-base;
+                @apply sm:pl-6 sm:row-start-2 sm:col-start-2 py-10 sm:py-0;
             }
 
             .project-external-link {
-                @apply text-2xl row-start-3 col-span-2 transition-transform scale-100 hover:scale-110 hover:text-shadow-silver-md;
+                @apply text-lg sm:text-xl lg:text-2xl text-center transition-transform scale-100 hover:scale-110 hover:text-shadow-silver-md;
+                @apply col-span-1 sm:col-span-2 sm:row-start-3;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .project-specifics {
+            @apply px-2 py-6;
+
+            .project-container {
+                @apply p-3 gap-3 rounded-xl;
+
+                .project-detail-title {
+                    @apply text-xl;
+                }
+
+                .project-external-link {
+                    @apply text-base;
+                }
             }
         }
     }
