@@ -148,6 +148,12 @@ body::-webkit-scrollbar {
         @apply w-20 h-36 flex items-center justify-center rounded-full blur-lg opacity-70 scale-0 z-10;
     }
 
+    .navbar-open {
+        @apply inset-0 backdrop-blur-2xl;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
     .navbar {
         @apply fixed z-9 w-full;
 
@@ -161,6 +167,17 @@ body::-webkit-scrollbar {
             .nav-items {
                 @apply absolute flex flex-row items-center text-xl lg:gap-15 sm:gap-5 lg:mx-10 sm:mx-2 cursor-pointer;
             }
+
+            .resume-button {
+                @apply text-2xl text-silver underline cursor-pointer mr-8 hover:text-shadow-silver-lg;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .nav-items {
+            @apply absolute gap-12 text-2xl top-5;
+            flex-direction: column !important;
         }
     }
 
@@ -206,7 +223,7 @@ body::-webkit-scrollbar {
                 }
 
                 .question-title {
-                    @apply absolute 2xl:top-0 xl:top-5 rotate-10 text-medium-gray 2xl:text-xl lg:bottom-50 lg:right-12 lg:text-lg bottom-45 right-16 sm:text-sm;
+                    @apply absolute 2xl:top-0 xl:top-5 rotate-10 text-medium-gray 2xl:text-xl lg:bottom-50 right-2 sm:right-2 lg:-right-4 lg:text-lg bottom-45  sm:text-sm;
                 }
 
                 .long-arrow {
@@ -281,6 +298,16 @@ body::-webkit-scrollbar {
         }
     }
 
+    @media (max-width: 768px) {
+        .chatbot-container {
+            @apply inset-0;
+            position: fixed !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0 !important;
+        }
+    }
+
     .pin-spacer {
         @apply bg-radial-[at_50%_50%] from-black to-gray relative;
     }
@@ -298,15 +325,15 @@ body::-webkit-scrollbar {
                     @apply relative flex-shrink-0 w-70 h-70 cursor-pointer;
 
                     .card-front {
-                        @apply flex flex-col justify-center items-center;
+                        @apply flex flex-col justify-center items-center size-full;
                     }
 
                     .card-front, .card-back {
-                        @apply absolute size-full p-0 backface-hidden rounded-lg;
+                        @apply absolute p-0 backface-hidden rounded-lg;
                     }
 
                     .card-back {
-                        @apply flex flex-col justify-center items-center h-fit;
+                        @apply flex flex-col justify-center items-center top-[50%] -translate-y-1/2;
 
                         .card-back-description {
                             @apply m-5 rounded-lg;
@@ -318,10 +345,6 @@ body::-webkit-scrollbar {
                             p {
                                 @apply p-4 bg-black/50 border-1 border-black/50 rounded-lg mix-blend-luminosity;
                             }
-                        }
-
-                        .card-back-project-link {
-                            @apply text-xl bg-black/50 border-1 border-black/50 mb-5 rounded-lg p-3 mix-blend-luminosity hover:bg-white/50 hover:border-white/50 hover:text-white;
                         }
                     }
                 }

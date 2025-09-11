@@ -147,9 +147,6 @@ const SkillSlider = () => {
                                 <br />
                                 <p>{ usage }</p>
                             </div>
-                            <div className="card-back-project-link">
-                                <Link to={ experience }>{ project }</Link>
-                            </div>
                         </div>
                     </div>
                 ))}

@@ -1,14 +1,23 @@
-import {useRef, useState} from "react";
+import {useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Wisp from "../components/Wisp.jsx";
 import ChatBot from "../components/ChatBot.jsx";
+import { useMediaQuery } from "react-responsive";
+import { useTitle } from "../hooks/useTitle.js";
 
 const Hero = ({ ws }) => {
     const arrowContainerRef = useRef(null);
     const chatBotRef = useRef(null);
     const closeChatBotRef = useRef(null);
     const openChatBotRef = useRef(null);
+
+    // for returning to home from inner pages
+    useTitle("Home | Nolan Brennan");
+
+    const isTablet = useMediaQuery({
+        query: "(max-width: 768px)",
+    })
 
     useGSAP(() => {
         const heroStickTl = gsap.timeline({
@@ -30,8 +39,18 @@ const Hero = ({ ws }) => {
 
         const flipAnimation = () => {
             if(navItemTween.reversed()) {
+                if(isTablet){
+                    gsap.set(".navbar" ,{
+                        zIndex: 0
+                    })
+                }
                 navItemTween.play();
             } else {
+                if(isTablet){
+                    gsap.set(".navbar" ,{
+                        zIndex: 9
+                    })
+                }
                 navItemTween.reverse();
             }
         }
@@ -67,7 +86,7 @@ const Hero = ({ ws }) => {
 
         openChatBotRef.current.addEventListener("click", flipAnimation);
         closeChatBotRef.current.addEventListener("click", flipAnimation);
-    })
+    });
 
     return (
         <section className="hero-section">

@@ -7,16 +7,20 @@ import TechnicalSkills from "./sections/TechnicalSkills.jsx";
 import Footer from "./sections/Footer.jsx";
 import Education from "./sections/Education.jsx";
 import Lenis from "@studio-freight/lenis";
-import { useEffect, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Projects from './sections/Projects';
 import ProjectSpecifics from './components/ProjectSpecifics';
-import ScrollToTop from "./components/ScrollToTop.jsx";
+import ScrollToTop from "./hooks/ScrollToTop.jsx";
+import { useTitle } from "./hooks/useTitle.js";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, MotionPathPlugin);
 
 const App = () => {
     const [ ws, setWs ] = useState(null);
+    const lenisRef = useRef(null);
+
+    useTitle("Home | Nolan Brennan");
 
     useEffect(() => {
         if (ws?.readyState === WebSocket.OPEN) return;
@@ -48,6 +52,8 @@ const App = () => {
             smoothTouch: false,
         });
 
+        lenisRef.current = lenis;
+
         lenis.on('scroll', ScrollTrigger.update);
 
         gsap.ticker.add((time) => {
@@ -66,6 +72,18 @@ const App = () => {
 
     useGSAP(() => {
         document.fonts.ready.then(() => {
+            function disableScroll() {
+                if (lenisRef.current) {
+                    lenisRef.current.stop();
+                }
+            }
+
+            function enableScroll() {
+                if (lenisRef.current) {
+                    lenisRef.current.start();
+                }
+            }
+
             gsap.set(".long-arrow", {
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
             });
@@ -74,7 +92,10 @@ const App = () => {
                 type: "chars"
             })
 
-            const tl = gsap.timeline();
+            const tl = gsap.timeline({
+                onStart: disableScroll,
+                onComplete: enableScroll,
+            });
 
             gsap.set(".hero-container", {
                 backgroundColor: "black"
@@ -116,13 +137,13 @@ const App = () => {
                 .to(".wisp", {
                     duration: 2,
                     scale: 3,
-                    motionPath: { 
-                        // 2xl: [{x: 0, y: 0}, {x: -250, y: -50}, {x: -500, y: -200}]
+                    motionPath: {
+                        // 2xl: [{x: 0, y: 0}, {x: -250, y: -100}, {x: -500, y: -200}]
                         // xl: [{x: 0, y: 0}, {x: -215, y: -60}, {x: -435, y: -125}]
                         // lg: [{x: 0, y: 0}, {x: -160, y: -60}, {x: -335, y: -125}]
-                        // md: [{x: 0, y: 0}, {x: -95, y: -60}, {x: -190, y: -125}] 
+                        // md: [{x: 0, y: 0}, {x: -95, y: -60}, {x: -190, y: -125}]
                         // sm: [{x: 0, y: 0}, {x: -80, y: -60}, {x: -160, y: -125}]
-                        path: [{x: 0, y: 0}, {x: -215, y: -60}, {x: -435, y: -125}],
+                        path: [{x: 0, y: 0}, {x: -250, y: -100}, {x: -500, y: -200}],
                         fromCurrent: true,
                         autoRotate: false,
                     },
@@ -139,7 +160,7 @@ const App = () => {
                 .to(".long-arrow", {
                     duration: 1,
                     clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
-                }); 
+                });
 
         });
     }, []);

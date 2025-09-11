@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import { useTitle } from "../hooks/useTitle";
 
 const Projects = () => {
     const rowTitles = ["Technical Projects", "Family Projects", "Music Projects"]
     const cardRefs = useRef([]);
+
+    useTitle("Projects | Nolan Brennan");
 
     useGSAP(() => {
         cardRefs.current.forEach((cardElement) => {
@@ -14,7 +17,7 @@ const Projects = () => {
 
             const hoverText = cardElement.querySelector(".hover-text");
             const projectContent = cardElement.querySelector(".project-content");
-            
+
             if (!hoverText || !projectContent) return;
 
             const tl = gsap.timeline({
@@ -71,10 +74,10 @@ const Projects = () => {
                             {row.map((project, projectIndex) => {
                                 const uniqueIndex = getCumulativeIndex(rowIndex, projectIndex);
                                 return (
-                                    <Link 
-                                        ref={(el) => cardRefs.current[uniqueIndex] = el} 
-                                        to={project.link} 
-                                        key={projectIndex} 
+                                    <Link
+                                        ref={(el) => cardRefs.current[uniqueIndex] = el}
+                                        to={project.link}
+                                        key={projectIndex}
                                         className={`project-card col-center drop-shadow ${project.skillImages.includes("images/construction.png") ? "pointer-events-none" : "cursor-pointer"}`}
                                     >
                                         {

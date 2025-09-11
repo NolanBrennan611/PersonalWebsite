@@ -1,10 +1,13 @@
 import { projectDetails } from "../constants"
 import { Navigate, useNavigate, useParams, Link } from "react-router-dom"
+import { useTitle } from "../hooks/useTitle.js";
 
 const ProjectSpecifics = () => {
     const { projectId } = useParams();
     const project = projectDetails.find(p => p.projectId === projectId);
     const navigate = useNavigate();
+
+    useTitle(`${ project.projectName } | Nolan Brennan`);
 
     const handleClick = (e) => {
         e.preventDefault();
