@@ -260,7 +260,7 @@ body::-webkit-scrollbar {
                 }
 
                 .messages {
-                    @apply flex flex-col overflow-x-hidden overflow-y-auto m-2;
+                    @apply flex flex-col overflow-x-hidden overflow-y-auto;
 
                     div {
                         @apply p-4 w-fit max-w-[80%] h-fit items-center text-white border border-[#333333] rounded-[20px];
@@ -271,7 +271,7 @@ body::-webkit-scrollbar {
                     }
 
                     .bot {
-                        @apply mr-auto ml-2;
+                        @apply mr-auto m-2;
                     }
                 }
 
