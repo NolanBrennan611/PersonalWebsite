@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const INITIAL_TEXTAREA_HEIGHT_PIXELS = 24;
 const MAX_TEXTAREA_HEIGHT_PIXELS = 120;
@@ -11,6 +13,7 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
         { id: 1, content: "Don't have time to dig around? No worries, ask away! This chatbot uses the RAG Pattern to answer questions about me.", isUser: false }
     ]);
     const textAreaRef = useRef(null);
+    const typingIndicatorRef = useRef(null);
 
     const handleTextAreaOnChange = (e) => {
         setTextAreaContent(e.target.value);
@@ -56,8 +59,6 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
             }
         } catch (error) {
             console.error("Error sending message:", error);
-        } finally {
-            setIsSubmitting(false);
         }
     }
 
@@ -78,19 +79,50 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
         }
     }, [ ws ]);
 
+    const renderMessages = () => {
+        const messageList = messages.map((message) => (
+            <div key={ message.id } className={`${message.isUser ? "user bg-blue-message" : "bot bg-orange-message"} message`}>
+                { message.content }
+            </div>
+        ))
+
+        if(isSubmitting) {
+            messageList.push(
+                <div key="typing-indicator" className="typing-indicator bot bg-orange-message message" ref={ typingIndicatorRef }>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                </div>
+            )
+        }
+
+        return messageList;
+    }
+
+    useEffect(() => {
+        if(typingIndicatorRef.current && isSubmitting) {
+            gsap.fromTo(typingIndicatorRef.current.children, {
+                opacity: 0.3,
+                scale: 0.6
+            }, {
+                opacity: 1,
+                scale: 0.8,
+                duration: 0.8,
+                stagger: 0.3,
+                yoyo: true,
+                repeat: -1,
+                ease: "power2.inOut"
+            })
+        }
+    }, [isSubmitting]);
+
     return (
         <div ref={ chatBotRef } className="chatbot-container drop-shadow" data-lenis-prevent>
             <div className="x-button border-gradient-bottom">
                 <a ref={ closeChatBotRef } className="col-center">X</a>
             </div>
             <div className="messages scrollbar-custom">
-                {
-                    messages.map((message) => (
-                        <div key={ message.id } className={message.isUser ? "user bg-blue-message" : "bot bg-orange-message"}>
-                            { message.content }
-                        </div>
-                    ))
-                }
+                { renderMessages() }
             </div>
             <div className="chat-input-container border-gradient-top">
                 <textarea
