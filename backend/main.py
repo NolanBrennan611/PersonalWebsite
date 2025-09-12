@@ -55,9 +55,9 @@ async def websocket_endpoint(websocket: WebSocket):
             message = data.get("message", "")
             message = sanitize_message_data(message)
 
-            #message_response = ResponseDeterminer().determine_response(message)
-            logger.info(f"sending message: {message}")
-            await websocket.send_json({ "status": "success", "message": message })
+            message_response = ResponseDeterminer().determine_response(message)
+            logger.info(f"sending message: {message_response}")
+            await websocket.send_json({ "status": "success", "message": message_response })
 
     except WebSocketDisconnect:
         logger.info("Disconnected")

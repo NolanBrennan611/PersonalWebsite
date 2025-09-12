@@ -4,3 +4,9 @@ python-dotenv
 websockets
 bleach
 requests
+anthropic
+langchain
+voyageai
+langchain_voyageai
+langchain_community
+dotenv

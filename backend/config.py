@@ -13,9 +13,11 @@ class Config:
     HOST = os.getenv("HOST")
     PORT = int(os.getenv("PORT"))
 
-    CLAUDE_SERVER = os.getenv("CLAUDE_SERVER")
-
     FRONTEND_ORIGIN = os.getenv("FRONTEND_ORIGIN")
+
+    ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+    VOYAGE_API_KEY = os.getenv("VOYAGE_API_KEY")
 
     LOG_LEVEL = logging.DEBUG if DEV_MODE else logging.INFO
 

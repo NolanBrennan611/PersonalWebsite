@@ -8,7 +8,7 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
     const [ , setTextAreaHeight ] = useState(INITIAL_TEXTAREA_HEIGHT_PIXELS);
     const [ isSubmitting, setIsSubmitting ] = useState(false);
     const [ messages, setMessages ] = useState([
-        { id: 1, content: "Under construction, come back soon!", isUser: false }
+        { id: 1, content: "Don't have time to dig around? No worries, ask away! This chatbot uses the RAG Pattern to answer questions about me.", isUser: false }
     ]);
     const textAreaRef = useRef(null);
 
@@ -70,7 +70,7 @@ const ChatBot = ({ ws, chatBotRef, closeChatBotRef }) => {
                     if (data.message.status === "error") {
                         // setWarningVisible(true);
                     } else {
-                        addMessage({ content: data.message, isUser: false });
+                        addMessage({ content: data.message.content, isUser: false });
                         setIsSubmitting(false);
                     }
                 }

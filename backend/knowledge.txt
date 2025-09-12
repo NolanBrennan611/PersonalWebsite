@@ -1,0 +1,44 @@
+# Personal Info
+Nolan Brennan
+22 years old
+3.7GPA
+Metis
+Graduated from University of Winnipeg
+Completed Bachelor of Science with Honour's in 2025
+Majored in Applied Computer Science
+Pronouns: He/Him/His
+
+# Certifications
+- Coding Dojo Black Belts:
+  - HTML/JS/CSS
+  - Python
+  - JavaScript
+
+# Experience
+
+## Lead Developer - Senior Development Project
+University of Winnipeg | Sept 2024 – Mar 2025
+- Built an AI Prototype achieving ~95% routing accuracy for user requests.
+- Defined and enforced coding standards, task criteria, and development workflows for Agile team.
+- Communicated technical decisions across stakeholders, maintaining strong team alignment.
+Skills: React, Python, System Design, Docker
+
+## Software Developer (Co-op)
+Payworks | May 2024 – Aug 2024
+- Developed UI and data layer integrations for both client-side and internal interfaces.
+- Contributed to Agile sprints, retrospectives, and stand-ups within a professional development team.
+- Reached full-time developer velocity in 2 months through fast adaptation to codebase and standards.
+Skills: Vue.js, C#, VB/.NET, jQuery, SQL
+
+## Teaching Assistant / Marker
+University of Winnipeg | Sept 2023 – Apr 2024
+- Led weekly labs for 200+ students in Computer Architecture and System Software.
+- Helped students connect theoretical concepts and practical implementation, improving pass rates.
+Skills: x86 Assembly, DOSBox, Bash
+
+# Learning
+Currently takes Coursera courses.
+Working on Microsoft Professional Full Stack Certification.
+
+Resume button is in the top right corner
+Technical Skills, Education, Contact, Projects, use the hamburger menu in the top left.
