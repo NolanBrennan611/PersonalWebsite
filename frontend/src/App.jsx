@@ -13,6 +13,7 @@ import Projects from './sections/Projects';
 import ProjectSpecifics from './components/ProjectSpecifics';
 import ScrollToTop from "./hooks/ScrollToTop.jsx";
 import { useTitle } from "./hooks/useTitle.js";
+import {useMediaQuery} from "react-responsive";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, MotionPathPlugin);
 
@@ -21,6 +22,10 @@ const App = () => {
     const lenisRef = useRef(null);
 
     useTitle("Home | Nolan Brennan");
+
+    const isTablet = useMediaQuery({
+        query: "(max-width: 768px)",
+    })
 
     useEffect(() => {
         if (ws?.readyState === WebSocket.OPEN) return;
@@ -172,6 +177,9 @@ const App = () => {
         const viewportHeight = window.innerHeight;
         if(className === 'hero-section') {
             offsetPosition = elementPosition + window.scrollY - viewportHeight;
+        }
+        if(className === 'education-section' && isTablet) {
+            offsetPosition = (elementPosition + window.scrollY) - 70;
         }
 
         window.scrollTo({

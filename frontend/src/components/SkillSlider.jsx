@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 const SkillSlider = () => {
     const sliderRef = useRef();
+    const cardTimelines = useRef(new Map());
+    const openCardRef = useRef(null);
 
     const isLargeScreen = useMediaQuery({
         query: "(min-width: 1024px)",
@@ -86,6 +88,8 @@ const SkillSlider = () => {
             const cardBack = container.querySelector('.card-back');
             const flipTl = gsap.timeline({ paused: true });
 
+            cardTimelines.current.set(container, flipTl);
+
             flipTl.to([cardFront, cardBack], {
                 rotationY: "+=180",
                 duration: 1,
@@ -108,12 +112,18 @@ const SkillSlider = () => {
                 ease: "power2.inOut"
             }, 0);
 
-            // Add click event listener
             const handleClick = () => {
                 if (flipTl.progress() === 0) {
+                    if (openCardRef.current && openCardRef.current !== container) {
+                        const previousTimeline = cardTimelines.current.get(openCardRef.current);
+                        previousTimeline.reverse();
+                    }
+
+                    openCardRef.current = container;
                     flipTl.play();
                 } else {
                     flipTl.reverse();
+                    openCardRef.current = null;
                 }
             };
 
@@ -129,7 +139,7 @@ const SkillSlider = () => {
                 <span><img className="rotate-10" src="/images/rounded-arrow.png" alt="Rounded arrow" /></span>
             </div>
             <div className="skill-cards-container">
-                { skillCards.map(({ name, usage, experience, logo, backgroundGradient, project }) => (
+                { skillCards.map(({ name, usage, logo, backgroundGradient }) => (
                     <div className="card-container" key={ name } id={ name } >
                         <div
                             className="card-front drop-shadow"
