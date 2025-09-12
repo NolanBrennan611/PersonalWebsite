@@ -43,16 +43,8 @@ const Projects = () => {
                 duration: 0.2,
             });
 
-            const flipAnimation = () => {
-                if (tl.reversed()) {
-                    tl.play();
-                } else {
-                    tl.reverse();
-                }
-            };
-
-            cardElement.addEventListener('mouseenter', flipAnimation);
-            cardElement.addEventListener('mouseleave', flipAnimation);
+            cardElement.addEventListener('mouseover', () => tl.play());
+            cardElement.addEventListener('mouseleave', () => tl.reverse());
         });
     });
 
